@@ -842,3 +842,214 @@ body {
   .section-lab .model img { width: 100%; height: auto; }
   .section-lab .shade-marquee { bottom: 18%; }
 }
+
+
+/* =========================================================
+   THÈME "NUDE SCIENTIFIQUE" — blanc cassé + taupe très clair
+   S'ajoute après style.css (aperçu : preview-nude.html)
+   ========================================================= */
+:root {
+  --bg: #F2EEEA;        /* blanc cassé */
+  --bg-alt: #E4DBCF;    /* taupe très clair */
+  --taupe: #DDD3C4;
+  --taupe-deep: #B9AC9A;
+  --ink: #2E2924;
+  --muted: #847A70;
+  --accent: #8C7766;    /* cacao doux, plus "labo" que le terracotta */
+  --line: rgba(120,104,88,.16);
+  --card: #F7F4F0;
+  /* relief */
+  --relief: 0 1px 0 rgba(255,255,255,.9) inset, 0 -1px 0 rgba(120,104,88,.06) inset,
+            0 18px 40px -18px rgba(90,74,58,.28), 0 2px 6px rgba(90,74,58,.06);
+  --relief-sm: 0 1px 0 rgba(255,255,255,.9) inset, 0 8px 20px -10px rgba(90,74,58,.25);
+}
+
+/* Grain de papier très léger sur toute la page */
+body {
+  background: var(--bg) !important;
+  color: var(--ink);
+}
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 100; pointer-events: none; opacity: .09; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .40  0 0 0 0 .34  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+
+/* ---------- Hero : taupe lumineux au lieu du brun ---------- */
+.hero { color: var(--ink); }
+.hero-bg {
+  background:
+    url("images/hero.jpg") center 30% / cover no-repeat,
+    radial-gradient(ellipse 55% 60% at 68% 32%, #FBF8F4 0%, rgba(251,248,244,0) 60%),
+    radial-gradient(ellipse 60% 70% at 15% 90%, rgba(185,172,154,.55) 0%, transparent 60%),
+    linear-gradient(160deg, #EAE2D7 0%, #DDD3C4 55%, #CFC3B2 100%) !important;
+}
+.hero .thin { color: var(--muted); }
+.hero-sub { opacity: 1; color: #5E554C; }
+.hero-pillars { border-top-color: rgba(120,104,88,.22); }
+.hero-pillars span { opacity: 1; color: var(--muted); }
+.hero .btn-light { background: var(--ink); color: #F7F4F0; box-shadow: var(--relief-sm); }
+.hero .btn-ghost { background: rgba(255,255,255,.55); color: var(--ink); border-color: rgba(120,104,88,.25); }
+/* Mesures en filigrane dans le hero (ambiance labo) */
+.hero::after {
+  content: "L* 64.2   a* 11.8   b* 19.4   ITA 36°   ΔE 2.31";
+  position: absolute; right: 32px; bottom: 150px; z-index: 0;
+  font-family: "IBM Plex Mono", monospace; font-size: .72rem; letter-spacing: .14em; color: rgba(90,74,58,.45);
+  writing-mode: vertical-rl;
+}
+
+/* ---------- Menu ---------- */
+.nav { color: var(--ink); background: linear-gradient(to bottom, rgba(242,238,234,.6), transparent); }
+.nav .btn-light { background: var(--ink); color: #F7F4F0; }
+.nav.scrolled { background: rgba(242,238,234,.88); }
+
+/* ---------- Textes ---------- */
+.eyebrow, .eyebrow.light { color: var(--accent); font-family: "IBM Plex Mono", monospace; font-weight: 500; letter-spacing: .16em; }
+.check-list li::before { background: var(--card); color: var(--accent); box-shadow: var(--relief-sm); border: 1px solid var(--line); }
+
+/* ---------- Relief sur toutes les cartes ---------- */
+.card, .stat-card, .discover-grid article, .viz-card, .trust-grid > div, .plan-card,
+.season-card, .phase .action, .ba-slider, .page {
+  background-color: var(--card);
+  border: 1px solid rgba(255,255,255,.7) !important;
+  box-shadow: var(--relief);
+}
+.discover-grid article::before { background: linear-gradient(90deg, var(--taupe), var(--taupe-deep)); }
+.tabs-row label { background: var(--card); box-shadow: var(--relief-sm); border-color: rgba(255,255,255,.7); }
+.slider { background: linear-gradient(90deg, #AFC0CF, #EDE6DC, #D2A985); box-shadow: inset 0 1px 2px rgba(90,74,58,.25); }
+.bars i, .levels i, .lab div, .ita em { box-shadow: inset 0 1px 2px rgba(90,74,58,.18); }
+.gauge::before { box-shadow: 0 2px 6px rgba(90,74,58,.15); }
+.btn-dark { background: var(--ink); box-shadow: var(--relief-sm); }
+
+/* ---------- Méthode (ancien fond brun) → taupe en relief ---------- */
+.section-deep {
+  color: var(--ink) !important;
+  background:
+    radial-gradient(ellipse 60% 70% at 75% 15%, #F6F2ED 0%, transparent 60%),
+    linear-gradient(165deg, #E4DBCF 0%, #D6CBBB 100%) !important;
+}
+.section-deep .thin, .section-deep .lead, .section-deep .quote cite { color: var(--muted) !important; }
+.track::before { background: rgba(120,104,88,.25); }
+.track li::before { background: var(--bg); border-color: var(--taupe-deep); }
+.old { opacity: .75; }
+.old li:last-child strong { color: #9A5F4A; }
+.new .track li { background: var(--card); border: 1px solid rgba(255,255,255,.7); box-shadow: var(--relief); backdrop-filter: none; }
+.new .track li::before { background: var(--taupe-deep); border-color: var(--taupe-deep); }
+.new .track li.highlight { background: var(--ink); color: #F7F4F0; }
+.new .track li.highlight::before { background: #F7F4F0; border-color: #F7F4F0; }
+
+/* ---------- Analyse ---------- */
+.section-lab {
+  background:
+    radial-gradient(ellipse 45% 60% at 50% 55%, #FBF8F4 0%, transparent 70%),
+    radial-gradient(ellipse 50% 70% at 95% 10%, rgba(221,211,196,.8) 0%, transparent 60%),
+    linear-gradient(170deg, #F2EEEA 0%, #E6DDD1 100%) !important;
+}
+.section-lab .card { background: rgba(247,244,240,.82); }
+.section-lab .leaders line { stroke: rgba(140,119,102,.6); }
+.section-lab .pt { background: var(--accent); box-shadow: 0 0 0 4px rgba(140,119,102,.18); }
+.section-lab .scan { background: linear-gradient(to bottom, transparent, rgba(140,119,102,.10), transparent); border-bottom-color: rgba(140,119,102,.45); }
+.section-lab .shade-track i { box-shadow: var(--relief-sm); }
+
+/* ---------- Your journey (ancien brun) → taupe ---------- */
+.section-brown, .section-dark {
+  color: var(--ink) !important;
+  background:
+    radial-gradient(ellipse 55% 65% at 60% 25%, #F7F3EE 0%, transparent 60%),
+    radial-gradient(ellipse 60% 70% at 10% 90%, rgba(185,172,154,.45) 0%, transparent 60%),
+    linear-gradient(160deg, #E6DDD1 0%, #D9CEBE 100%) !important;
+}
+.section-dark .thin, .section-dark .lead { color: var(--muted) !important; }
+.step { border: 1px solid rgba(255,255,255,.7) !important; background: var(--card) !important; box-shadow: var(--relief); }
+.step span { color: var(--accent); font-family: "IBM Plex Mono", monospace; }
+.step-photo { outline: 1px solid var(--taupe-deep); outline-offset: 3px; }
+.photo-notes { background: var(--line); box-shadow: var(--relief); }
+.photo-notes > div { background: var(--card) !important; }
+.photo-notes p, .sweater-note { color: var(--muted) !important; }
+.photo-notes::before { background: var(--taupe-deep); }
+.section-dark .btn-light { background: var(--ink); color: #F7F4F0; box-shadow: var(--relief-sm); }
+.page { background: #FBF9F6; }
+
+/* ---------- Réassurance ---------- */
+.trust-big {
+  background:
+    radial-gradient(ellipse 70% 70% at 80% 10%, rgba(255,255,255,.35) 0%, transparent 60%),
+    linear-gradient(160deg, #B9AC9A, #8C7766 70%, #6E5D50) !important;
+  box-shadow: var(--relief);
+}
+.trust-grid span, .discover-grid span { color: var(--accent); }
+
+/* ---------- Footer ---------- */
+.footer { background: #2E2924; }
+
+/* =========================================================
+   ALTERNANCE : sections blanches (léger dip dye) / sections taupe clair
+   ========================================================= */
+/* :not(#_) ne sert qu'à passer devant les fonds définis dans style.css */
+/* Style 2 : blanc pur */
+main > section:not(#_):not(#_):not(.hero) { background: #FFFFFF !important; }
+/* Style 1 : dip dye taupe (une section sur trois environ, pour rythmer) */
+main > section:nth-of-type(4):not(#_):not(#_),
+main > section:nth-of-type(8):not(#_):not(#_),
+main > section:nth-of-type(12):not(#_):not(#_) {
+  background:
+    radial-gradient(ellipse 50% 65% at 72% 35%, rgba(246,241,234,.95) 0%, rgba(246,241,234,0) 60%),
+    radial-gradient(ellipse 55% 70% at 8% 85%, rgba(160,146,128,.45) 0%, transparent 60%),
+    linear-gradient(160deg, #CFC3B2 0%, #DDD3C4 55%, #C4B6A3 100%) !important;
+}
+
+/* Hero : dip dye taupe, texte blanc */
+.hero { color: #fff; }
+.hero-bg {
+  background:
+    url("images/hero.jpg") center 30% / cover no-repeat,
+    radial-gradient(ellipse 45% 60% at 70% 45%, rgba(236,228,217,.95) 0%, rgba(236,228,217,0) 62%),
+    radial-gradient(ellipse 60% 80% at 0% 30%, rgba(120,106,90,.75) 0%, transparent 60%),
+    linear-gradient(160deg, #9C8E7C 0%, #B8AA97 45%, #CDBFAC 75%, #A89A87 100%) !important;
+}
+.hero .thin { color: rgba(255,255,255,.78); }
+.hero-sub { color: rgba(255,255,255,.88); }
+.hero-pillars { border-top-color: rgba(255,255,255,.3); }
+.hero-pillars > div + div { border-left: 1px solid rgba(255,255,255,.3); padding-left: 24px; }
+.hero-pillars span { color: rgba(255,255,255,.75); }
+.hero .btn-light { background: #fff; color: var(--ink); }
+.hero .btn-ghost { background: rgba(255,255,255,.2); color: #fff; border-color: rgba(255,255,255,.35); }
+.hero::after { color: rgba(255,255,255,.5); }
+.nav:not(.scrolled) { color: #fff; background: transparent; }
+.nav:not(.scrolled) .btn-light { background: #fff; color: var(--ink); }
+.nav.scrolled { background: rgba(255,255,255,.92); }
+
+/* Habillage : fines lignes de structure */
+main > section:not(.hero) { position: relative; border-top: 1px solid rgba(120,104,88,.14); }
+main > section:not(.hero)::after {
+  content: ""; position: absolute; top: 0; bottom: 0; pointer-events: none; z-index: 0;
+  left: max(16px, calc(50% - var(--max) / 2 - 24px)); right: max(16px, calc(50% - var(--max) / 2 - 24px));
+  border-left: 1px solid rgba(120,104,88,.12); border-right: 1px solid rgba(120,104,88,.12);
+}
+main > section > * { position: relative; z-index: 1; }
+.split > div:first-child { border-right: 1px solid rgba(120,104,88,.12); padding-right: 32px; }
+.section-lab .split > div:first-child { border-right: 0; }
+/* Petit titre en pastille, façon étiquette de labo */
+.eyebrow, .eyebrow.light {
+  display: inline-block; padding: 6px 12px; border: 1px solid rgba(120,104,88,.25); border-radius: 999px;
+  color: #9A8C7B !important; font-size: .7rem; letter-spacing: .14em; background: rgba(255,255,255,.5);
+}
+/* Listes numérotées [1] [2]… au lieu des coches */
+.check-list { counter-reset: item; }
+.check-list li { counter-increment: item; gap: 20px; }
+.check-list li::before {
+  content: "[" counter(item) "]"; width: auto; height: auto; border-radius: 0; background: none !important;
+  box-shadow: none !important; border: 0 !important; color: #9A8C7B; font-family: "IBM Plex Mono", monospace; font-size: .8rem;
+}
+/* Images avant/après sur fond taupe */
+.ba-slider { background: #DDD3C4; border-radius: 14px; }
+.ba-slider .tag { background: transparent; color: #fff; border: 0; letter-spacing: .1em; font-weight: 500; }
+/* Cartes sur blanc : taupe très léger */
+main > section .card, main > section .stat-card, main > section .viz-card,
+main > section .trust-grid > div, main > section .plan-card,
+main > section .discover-grid article, main > section .step { background-color: #FAF8F5 !important; }
+@media (max-width: 960px) {
+  .split > div:first-child { border-right: 0; padding-right: 0; }
+  .hero-pillars > div + div { border-left: 0; padding-left: 0; }
+}
+/* Cartes : un ton plus clair sur taupe, un ton plus chaud sur blanc */
