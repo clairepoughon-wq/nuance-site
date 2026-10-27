@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NUANCE — Personal Color Analysis Online</title>
+  <meta name="description" content="Discover the colors that make you glow with a 100% personalized color analysis, done online from your photos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- =========================================================
+     NAVIGATION
+     ========================================================= -->
+<header class="nav">
+  <a href="#" class="logo">NUANCE</a>
+  <nav class="nav-links">
+    <a href="#why">Why color?</a>
+    <a href="#how">How it works</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <div class="nav-actions">
+    <a href="#" class="nav-login">Log in</a>
+    <!-- 👉 Remplace # par ton lien Tally / Stripe -->
+    <a href="start.html" class="btn btn-light btn-sm">Start my analysis</a>
+  </div>
+</header>
+
+<main>
+
+<!-- =========================================================
+     1. HERO
+     👉 Mets ta photo dans images/hero.jpg
+     ========================================================= -->
+<section class="hero">
+  <div class="hero-bg" role="img" aria-label="Portrait"></div>
+  <div class="hero-content">
+    <p class="hero-proof">Join <strong>5,000+</strong> people</p>
+    <h1>Look your most beautiful<br><span class="thin">without a makeover</span></h1>
+    <p class="hero-sub">Get your personalized color analysis: your palette, your colors decoded and a step-by-step glow-up plan, built around your features and your personality.</p>
+    <div class="hero-ctas">
+      <a href="start.html" class="btn btn-light">Start my analysis</a>
+      <a href="#how" class="btn btn-ghost">How it works</a>
+    </div>
+  </div>
+  <div class="hero-pillars">
+    <div><strong>Based on color science</strong><span>Skin tone research</span></div>
+    <div><strong>100% personalized</strong><span>Reviewed by a color expert</span></div>
+    <div><strong>No makeover</strong><span>Just the right colors</span></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     2. WHY IT MATTERS
+     ========================================================= -->
+<section class="section screen" id="why">
+  <div class="container split">
+    <div>
+      <p class="eyebrow">A new approach</p>
+      <h2>Colors that<br><span class="thin">change everything</span></h2>
+      <p class="lead">The right colors brighten your skin, soften signs of tiredness and make your eyes stand out. The wrong ones do the opposite.</p>
+      <ul class="check-list">
+        <li>Look more rested and radiant</li>
+        <li>Stop buying clothes you never wear</li>
+        <li>Put outfits together in seconds</li>
+        <li>Look fresh and rested with less makeup</li>
+        <li>Choose makeup with confidence</li>
+        <li>Feel more confident every day</li>
+      </ul>
+    </div>
+    <div class="ba-wrap">
+    <!-- Avant / après avec curseur. 👉 images/before.jpg et images/after.jpg -->
+    <div class="ba-slider" style="--pos:50%">
+      <img src="images/after.jpg" alt="After: cool ash brown hair, berry top, silver earrings">
+      <img src="images/before.jpg" class="ba-before" alt="Before: brassy caramel highlights, mustard top, gold earrings">
+      <span class="tag tag-l">BEFORE</span>
+      <span class="tag tag-r">AFTER</span>
+      <div class="ba-handle" aria-hidden="true"></div>
+      <input type="range" min="0" max="100" value="50" aria-label="Compare before and after">
+    </div>
+    <p class="ba-caption">Same face, zero makeup. Only the colors changed.</p>
+    </div>
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     2b. THE BEAUTY ADVANTAGE
+     ========================================================= -->
+<section class="section screen" id="beauty">
+  <div class="container beauty-grid">
+    <div>
+      <p class="eyebrow">The beauty advantage</p>
+      <h2>Looking your best<br><span class="thin">opens doors</span></h2>
+      <p class="lead">Study after study finds that how attractive we look quietly shapes our careers, our relationships and our daily lives. Wearing your colors is the simplest way to look your most attractive.</p>
+      <ul class="check-list">
+        <li>Open up more career opportunities</li>
+        <li>Feel more confident in your own skin</li>
+        <li>Make a memorable first impression</li>
+        <li>Stand out in your dating life</li>
+        <li>Enjoy a better quality of life</li>
+      </ul>
+    </div>
+  <!-- Onglets cliquables (100 % CSS) -->
+  <div class="tabs">
+    <input type="radio" name="benefit" id="tab-career" checked>
+    <input type="radio" name="benefit" id="tab-dating">
+    <input type="radio" name="benefit" id="tab-impression">
+    <input type="radio" name="benefit" id="tab-confidence">
+    <input type="radio" name="benefit" id="tab-life">
+
+    <p class="tabs-intro">Research shows your looks influence almost every part of life.</p>
+    <div class="tabs-row">
+      <label for="tab-career">Career</label>
+      <label for="tab-dating">Dating</label>
+      <label for="tab-impression">First impressions</label>
+      <label for="tab-confidence">Confidence</label>
+      <label for="tab-life">Quality of life</label>
+    </div>
+
+    <!-- 👉 Vérifie chaque étude avant publication, et remplace les chiffres marqués * par tes données -->
+    <div class="panels">
+      <div class="panel" id="p-career">
+        <article class="stat-card"><h3>Higher pay</h3><p>Above-average looks are linked to higher earnings across many occupations.</p><cite>Hamermesh &amp; Biddle (1994), American Economic Review</cite></article>
+        <article class="stat-card"><h3>Seen as more competent</h3><p>Attractive adults are judged more favorably on competence and social skills.</p><cite>Langlois et al. (2000), Psychological Bulletin</cite></article>
+        <article class="stat-card"><h3>A polished presence</h3><p>Colors that brighten your skin make you look rested and sharp in meetings and interviews.</p><cite>NUANCE expertise</cite></article>
+      </div>
+      <div class="panel" id="p-dating">
+        <article class="stat-card"><h3>Looks matter more than we admit</h3><p>When people actually meet, physical attractiveness predicts romantic interest far more than they expect.</p><cite>Walster et al. (1966), J. of Personality and Social Psychology</cite></article>
+        <article class="stat-card"><h3>A healthy glow</h3><p>Slightly rosier, more golden skin is seen as healthier and more attractive.</p><cite>Stephen et al. (2009), PLoS ONE</cite></article>
+        <article class="stat-card"><h3>Feeling desirable</h3><p>When you love what you see in the mirror, it shows on every date.</p><cite>NUANCE expertise</cite></article>
+      </div>
+      <div class="panel" id="p-impression">
+        <article class="stat-card"><p class="big">100 ms</p><p>That's all it takes for people to form an impression of you from your face.</p><cite>Willis &amp; Todorov (2006), Psychological Science</cite></article>
+        <article class="stat-card"><h3>Even skin, younger look</h3><p>A more even-looking skin tone is perceived as younger and healthier.</p><cite>Fink et al. (2006), Evolution and Human Behavior</cite></article>
+        <article class="stat-card"><h3>Your face, first</h3><p>The colors closest to your face are the first thing people notice.</p><cite>NUANCE expertise</cite></article>
+      </div>
+      <div class="panel" id="p-confidence">
+        <article class="stat-card"><h3>Clothes change your mindset</h3><p>What we wear influences how we think, feel and perform.</p><cite>Adam &amp; Galinsky (2012), J. of Experimental Social Psychology</cite></article>
+        <article class="stat-card"><p class="big">92%</p><p>of our clients feel more beautiful in their colors*</p><cite>NUANCE client survey</cite></article>
+        <article class="stat-card"><h3>No more mirror doubts</h3><p>Every piece you own works with your features, not against them.</p><cite>NUANCE expertise</cite></article>
+      </div>
+      <div class="panel" id="p-life">
+        <article class="stat-card"><h3>Greater well-being</h3><p>People who are seen as more attractive tend to report higher life satisfaction.</p><cite>Diener, Wolsic &amp; Fujita (1995), J. of Personality and Social Psychology</cite></article>
+        <article class="stat-card"><p class="big">10 min</p><p>saved every morning getting dressed*</p><cite>NUANCE client survey</cite></article>
+        <article class="stat-card"><p class="big">3×</p><p>more outfit combinations with fewer pieces*</p><cite>NUANCE client survey</cite></article>
+      </div>
+    </div>
+    <p class="footnote">* Example figures — replace with your own data. Double-check every study before publishing.</p>
+  </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     3. OLD WAY / NEW WAY
+     ========================================================= -->
+<section class="section section-deep">
+  <div class="container center">
+    <p class="eyebrow light">Personalized analysis</p>
+    <h2>A new way<br><span class="thin">to glow up</span></h2>
+    <p class="lead narrow">Fashion follows trends, not your coloring. Free online tests give a generic season name, never advice made for your face and personality. The result: a full closet and nothing that truly flatters you.</p>
+  </div>
+  <div class="container process">
+    <div class="process-row old">
+      <p class="process-title">The old way</p>
+      <ol class="track">
+        <li><span>Step 1</span><strong>Follow the trends</strong><p>Buying what's in fashion, not what suits you.</p></li>
+        <li><span>Step 2</span><strong>No guidance</strong><p>No one to tell you what really suits you, only generic tips.</p></li>
+        <li><span>Step 3</span><strong>Doubt and self-criticism</strong><p>The same doubts in every fitting room, harsh judgment in the mirror, negative thoughts about yourself.</p></li>
+        <li><span>Step 4</span><strong>Nothing feels right</strong><p>Clothes, makeup, hair: lots of effort, nothing that truly brings out your best.</p></li>
+        <li><span>Step 5</span><strong>Poor results, low confidence</strong><p>Dull skin, tired look, frustration.</p></li>
+      </ol>
+    </div>
+    <div class="process-row new">
+      <p class="process-title">The NUANCE way</p>
+      <ol class="track">
+        <li><span>Step 1</span><strong>Photos in natural light</strong><p>10 minutes from home, no appointment or travel. Private, seen only by your expert.</p></li>
+        <li><span>Step 2</span><strong>Expert analysis</strong><p>Skin, eyes, hair and contrast measured on 30+ criteria.</p></li>
+        <li><span>Step 3</span><strong>Your exact season</strong><p>Not just "Autumn": your precise sub-season out of 12, explained.</p></li>
+        <li class="highlight"><span>Step 4</span><strong>Your palette &amp; precise recommendations</strong><p>Exact shades, makeup references, hair color, metals, and how to wear every trend in the undertones that suit you. Far beyond a generic online test.</p></li>
+        <li><span>Step 5</span><strong>Real results</strong><p>Friends asking what you changed. You just look amazing.</p></li>
+      </ol>
+    </div>
+  </div>
+  <blockquote class="quote container">
+    “When you wear the colors that harmonize with your skin, you need far less makeup to look fresh, rested and naturally radiant.”
+    <cite>— Expert name, title</cite>
+  </blockquote>
+</section>
+
+<!-- =========================================================
+     4. ANALYSIS (labo, tout sur un écran, valeurs animées)
+     👉 Photo : images/model-dark.jpg
+     ========================================================= -->
+<section class="section section-lab screen" id="analysis">
+  <div class="container center lab-head">
+    <p class="eyebrow">Personalized analysis</p>
+    <h2>Your complete <span class="thin">color analysis</span></h2>
+    <p class="lead narrow">We measure 30+ characteristics of your skin, eyes and hair to understand exactly what brings out your best.</p>
+  </div>
+
+  <div class="container analysis">
+    <div class="analysis-col">
+      <article class="card">
+        <p class="card-label">Skin tone measurement</p>
+        <div class="lab"><div><b>L*</b><span data-lab="L">64.2</span></div><div><b>a*</b><span data-lab="a">11.8</span></div><div><b>b*</b><span data-lab="b">19.4</span></div></div>
+        <div class="ita"><span>ITA°</span><strong data-lab="ita">36°</strong><em data-lab="cat">Intermediate</em></div>
+      </article>
+      <article class="card">
+        <p class="card-label">Undertone</p>
+        <div class="scale"><span>Cool</span><span>Neutral</span><span>Warm</span></div>
+        <div class="slider"><div class="slider-dot" id="undertone-dot" style="--pos:60%"></div></div>
+      </article>
+      <article class="card">
+        <p class="card-label">Skin surface</p>
+        <div class="bars" id="skin-bars">
+          <div><span>Evenness</span><i style="--w:70%"></i><b>70%</b></div>
+          <div><span>Redness</span><i style="--w:30%"></i><b>30%</b></div>
+          <div><span>Radiance</span><i style="--w:55%"></i><b>55%</b></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="analysis-center">
+      <div class="model">
+        <img src="images/model-cutout.png" alt="Woman during her color analysis">
+        <!-- traits du visage vers les mesures (sans libellés) -->
+        <svg class="leaders" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="47" y1="24" x2="-6" y2="17" /><line x1="37" y1="46" x2="-6" y2="50" /><line x1="45" y1="61" x2="-6" y2="83" />
+          <line x1="59" y1="34" x2="106" y2="17" /><line x1="74" y1="45" x2="106" y2="50" /><line x1="52" y1="51" x2="106" y2="83" />
+        </svg>
+        <i class="pt" style="top:24%; left:47%"></i><i class="pt" style="top:46%; left:37%"></i><i class="pt" style="top:61%; left:45%"></i>
+        <i class="pt" style="top:34%; left:59%"></i><i class="pt" style="top:45%; left:74%"></i><i class="pt" style="top:51%; left:52%"></i>
+        <div class="scan" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="analysis-col">
+      <article class="card">
+        <p class="card-label">Eye color</p>
+        <div class="eye-detail" id="eye-detail">
+          <div><i style="--c:#9A7A3F"></i><span>Iris base</span><b>—</b></div>
+          <div><i style="--c:#B8742F"></i><span>Flecks</span><b>—</b></div>
+          <div><i style="--c:#5E6B3A"></i><span>Outer rim</span><b>—</b></div>
+          <div><i style="--c:#3A2A1C"></i><span>Limbal ring</span><b>—</b></div>
+        </div>
+      </article>
+      <article class="card">
+        <p class="card-label">Hair</p>
+        <div class="levels" id="hair-levels"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="scale small"><span>Level 1</span><span id="hair-label">Level 5</span><span>Level 10</span></div>
+      </article>
+      <article class="card">
+        <p class="card-label">Natural contrast</p>
+        <div class="gauge" id="contrast-gauge" style="--val:50"><span>50%</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="shade-marquee" aria-hidden="true">
+    <div class="shade-track">
+      <i style="--c:#F2D7C6"></i><i style="--c:#E8B9A0"></i><i style="--c:#D9967A"></i><i style="--c:#C27A5B"></i><i style="--c:#B5603F"></i><i style="--c:#8C4A3E"></i><i style="--c:#6B3A2E"></i><i style="--c:#C19A6B"></i><i style="--c:#D9B48F"></i><i style="--c:#E6D3B8"></i><i style="--c:#A6C3DE"></i><i style="--c:#7A97B8"></i><i style="--c:#3F5A7A"></i><i style="--c:#2747B8"></i><i style="--c:#B9A7D3"></i><i style="--c:#8E7AB5"></i><i style="--c:#D8A1AE"></i><i style="--c:#D6338A"></i><i style="--c:#B48394"></i><i style="--c:#708238"></i><i style="--c:#5E6B4E"></i><i style="--c:#A4B8A0"></i><i style="--c:#2F6F6A"></i><i style="--c:#3EC1B0"></i><i style="--c:#F7D26B"></i><i style="--c:#D4A017"></i><i style="--c:#FF7F6E"></i><i style="--c:#FFB38A"></i><i style="--c:#A9AFB7"></i><i style="--c:#111111"></i>
+      <i style="--c:#F2D7C6"></i><i style="--c:#E8B9A0"></i><i style="--c:#D9967A"></i><i style="--c:#C27A5B"></i><i style="--c:#B5603F"></i><i style="--c:#8C4A3E"></i><i style="--c:#6B3A2E"></i><i style="--c:#C19A6B"></i><i style="--c:#D9B48F"></i><i style="--c:#E6D3B8"></i><i style="--c:#A6C3DE"></i><i style="--c:#7A97B8"></i><i style="--c:#3F5A7A"></i><i style="--c:#2747B8"></i><i style="--c:#B9A7D3"></i><i style="--c:#8E7AB5"></i><i style="--c:#D8A1AE"></i><i style="--c:#D6338A"></i><i style="--c:#B48394"></i><i style="--c:#708238"></i><i style="--c:#5E6B4E"></i><i style="--c:#A4B8A0"></i><i style="--c:#2F6F6A"></i><i style="--c:#3EC1B0"></i><i style="--c:#F7D26B"></i><i style="--c:#D4A017"></i><i style="--c:#FF7F6E"></i><i style="--c:#FFB38A"></i><i style="--c:#A9AFB7"></i><i style="--c:#111111"></i>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     5. TAKING INTO ACCOUNT (un écran)
+     ========================================================= -->
+<section class="section section-alt screen">
+  <div class="container split">
+    <div>
+      <p class="eyebrow">Personalized analysis</p>
+      <h2>Taking into<br><span class="thin">account your…</span></h2>
+    </div>
+    <div class="feature-list">
+      <div><h3>Skin</h3><p>Depth, undertone and how your skin reacts to light.</p></div>
+      <div><h3>Hair</h3><p>Your natural shade, and your current color if you dye it.</p></div>
+      <div><h3>Eyes</h3><p>Iris color, intensity and contrast with the whites of your eyes.</p></div>
+      <div><h3>Lifestyle &amp; clothing style</h3><p>Work, everyday life, occasions, and the way you like to dress: classic, minimal, bohemian or bold.</p></div>
+      <div><h3>Personal taste</h3><p>The colors you love, and the ones you'd never wear.</p></div>
+      <div><h3>Personality</h3><p>Soft or striking, calm or vibrant: colors that look like you inside and out.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     6. YOU WILL DISCOVER (cartes numérotées)
+     ========================================================= -->
+<section class="section discover">
+  <div class="container center">
+    <p class="eyebrow">What you get</p>
+    <h2>You will <span class="thin">discover…</span></h2>
+  </div>
+  <div class="container discover-grid">
+    <article><span>01</span><h3>Your color season</h3><p>Which of the 12 seasons is yours, and why.</p></article>
+    <article><span>02</span><h3>How color shapes your features</h3><p>What each shade does to your skin, eyes and hair.</p></article>
+    <article><span>03</span><h3>A detailed reading of your features</h3><p>What makes your coloring unique, feature by feature.</p></article>
+    <article><span>04</span><h3>Your full palette</h3><p>36 colors to wear, and the ones to keep away from your face.</p></article>
+    <article><span>05</span><h3>Your ideal makeup</h3><p>Lipstick, blush, eyeshadow and foundation shades.</p></article>
+    <article><span>06</span><h3>Your best hair color</h3><p>The dye and highlight shades that flatter you.</p></article>
+    <article><span>07</span><h3>Jewelry &amp; accessories</h3><p>Metals, glasses, bags and shoes.</p></article>
+    <article><span>08</span><h3>The why behind every tip</h3><p>Clear explanations so you can choose on your own.</p></article>
+  </div>
+</section>
+
+<!-- =========================================================
+     7. YOUR JOURNEY + APERÇU DU RAPPORT
+     ========================================================= -->
+<section class="section section-dark section-brown" id="how">
+  <div class="container center">
+    <p class="eyebrow light">Your journey</p>
+    <h2>Get your personalized<br><span class="thin">NUANCE report</span></h2>
+    <p class="lead narrow">Get to know yourself through color: what brings out your features, what reflects your personality, and how to use it every day.</p>
+  </div>
+
+  <div class="container report" aria-hidden="true">
+    <div class="page page-1">
+      <div class="pg-photo"></div>
+      <p class="pg-title">Your color<br>profile</p>
+      <div class="pg-lines"><i></i><i></i><i class="short"></i></div>
+      <div class="pg-swatches"><i style="--c:#B5603F"></i><i style="--c:#C19A6B"></i><i style="--c:#708238"></i><i style="--c:#2F6F6A"></i><i style="--c:#8A5A3B"></i><i style="--c:#E6D3B8"></i></div>
+    </div>
+    <div class="page page-2">
+      <p class="pg-kicker">Your features</p>
+      <div class="pg-row"><span class="pg-dot" style="--c:#D9A88A"></span><div class="pg-lines"><i></i><i class="short"></i></div></div>
+      <div class="pg-row"><span class="pg-dot" style="--c:#9A7A3F"></span><div class="pg-lines"><i></i><i class="short"></i></div></div>
+      <div class="pg-row"><span class="pg-dot" style="--c:#6A4A30"></span><div class="pg-lines"><i></i><i class="short"></i></div></div>
+      <div class="pg-bars"><i style="--w:72%"></i><i style="--w:55%"></i><i style="--w:35%"></i></div>
+    </div>
+    <div class="page page-3">
+      <p class="pg-kicker">Your palette</p>
+      <div class="pg-grid">
+        <i style="--c:#8A5A3B"></i><i style="--c:#B5603F"></i><i style="--c:#C98B5A"></i><i style="--c:#D9B48F"></i>
+        <i style="--c:#7A7A4A"></i><i style="--c:#5E6B4E"></i><i style="--c:#3F5A57"></i><i style="--c:#A67C52"></i>
+        <i style="--c:#C2A878"></i><i style="--c:#8C4A3E"></i><i style="--c:#6B4A3A"></i><i style="--c:#E6D3B8"></i>
+      </div>
+      <div class="pg-lines"><i></i><i class="short"></i></div>
+    </div>
+    <div class="page page-4">
+      <p class="pg-kicker">Your style &amp; personality</p>
+      <div class="pg-looks"><i></i><i></i><i></i></div>
+      <div class="pg-lines"><i></i><i></i><i class="short"></i></div>
+    </div>
+  </div>
+
+  <div class="container steps">
+    <div class="step"><span>[1]</span><p>Answer the quiz about your style, habits and personality</p></div>
+    <div class="step step-photo"><span>[2]</span><p>Send your photos with our simple photo guide</p></div>
+    <div class="step"><span>[3]</span><p>Your color expert analyzes your features one by one</p></div>
+    <div class="step"><span>[4]</span><p>Receive your full report, palette and step-by-step plan</p></div>
+    <!-- Rattaché à l'étape [2] -->
+    <div class="photo-notes">
+      <div><h4>Accurate from a photo</h4><p>Our photo guide includes a color reference that lets us correct light and camera colors, so we see your true skin tone.</p></div>
+      <div><h4>Your photos stay private</h4><p>Only your color expert sees them. Never shared, deleted as soon as your report is completed.</p></div>
+    </div>
+  </div>
+
+  <div class="container center">
+    <a href="start.html" class="btn btn-light">Start my analysis</a>
+    <p class="sweater-note">Less than the price of a sweater you'll never wear.</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     8. REAL RESULTS (curseurs avant / après)
+     ========================================================= -->
+<section class="section">
+  <div class="container center">
+    <p class="eyebrow">Real results</p>
+    <h2>No hiding,<br><span class="thin">no self-shaming</span></h2>
+    <p class="lead narrow">We use color science and expert analysis to understand your features. Then we help you find what feels like you and what makes you shine. No need to cover up or be hard on yourself.</p>
+  </div>
+  <div class="container results-grid">
+    <figure>
+      <div class="ba-slider" style="--pos:50%">
+        <img src="images/deep-after.jpg" alt="After">
+        <img src="images/deep-before.jpg" class="ba-before" alt="Before">
+        <span class="tag tag-l">BEFORE</span><span class="tag tag-r">AFTER</span>
+        <div class="ba-handle" aria-hidden="true"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Compare before and after">
+      </div>
+      <figcaption>Aïcha</figcaption>
+    </figure>
+    <figure>
+      <div class="ba-slider" style="--pos:50%">
+        <img src="images/fair-after.jpg" alt="After">
+        <img src="images/fair-before.jpg" class="ba-before" alt="Before">
+        <span class="tag tag-l">BEFORE</span><span class="tag tag-r">AFTER</span>
+        <div class="ba-handle" aria-hidden="true"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Compare before and after">
+      </div>
+      <figcaption>Emma</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- =========================================================
+     9. YOUR NUANCE PLAN
+     ========================================================= -->
+<section class="section section-alt">
+  <div class="container split plan">
+    <div>
+      <p class="eyebrow">Your NUANCE plan</p>
+      <h2>Follow your plan,<br><span class="thin">see yourself glow</span></h2>
+      <p class="lead">A clear plan with small, realistic steps. You start with what you already own and move forward at your own pace.</p>
+      <ul class="check-list">
+        <li>Your full palette, color by color</li>
+        <li>Small steps, week by week. No need to throw out your wardrobe</li>
+        <li>Alternatives for every budget</li>
+        <li>Questions? Chat with us directly</li>
+      </ul>
+    </div>
+    <div class="plan-card">
+      <div class="plan-top">
+        <div class="plan-thumbs"><img src="images/before.jpg" alt=""><img src="images/after.jpg" alt=""></div>
+        <div><p class="card-label">Your plan</p><p class="plan-progress"><b>Phase 1</b> of 3 · in progress</p></div>
+      </div>
+      <details class="phase" open>
+        <summary><b>1</b><span>Your foundations</span><small>Week 1</small></summary>
+        <div class="action"><strong>Swap the tops closest to your face</strong><span>Wardrobe</span><span>€0–40</span><span>This week</span><span>Easy</span></div>
+        <div class="action"><strong>Switch to a warm peach blush</strong><span>Makeup</span><span>~€15</span><span>Daily</span><span>Easy</span></div>
+        <div class="action"><strong>Choose gold over silver</strong><span>Accessories</span><span>€0</span><span>Today</span><span>Easy</span></div>
+      </details>
+      <details class="phase">
+        <summary><b>2</b><span>Closet edit</span><small>Weeks 2–3</small></summary>
+        <div class="action"><strong>Sort keep / pair / replace</strong><span>Wardrobe</span><span>€0</span><span>1 hour</span><span>Easy</span></div>
+      </details>
+      <details class="phase">
+        <summary><b>3</b><span>Hair &amp; signature style</span><small>Month 2</small></summary>
+        <div class="action"><strong>Ask your hairdresser for a golden gloss</strong><span>Hair</span><span>~€60</span><span>Once</span><span>Medium</span></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     10. VISUALIZATION
+     ========================================================= -->
+<section class="section">
+  <div class="container center">
+    <p class="eyebrow">Visualization</p>
+    <h2>See yourself<br><span class="thin">in your colors</span></h2>
+    <p class="lead narrow">Before you buy anything, see how each change looks on your own face.</p>
+  </div>
+  <div class="container viz">
+    <article class="viz-card viz-main">
+      <div class="ba-slider" style="--pos:50%">
+        <img src="images/after.jpg" alt="With her colors">
+        <img src="images/neutral.jpg" class="ba-before" alt="Today">
+        <span class="tag tag-l">TODAY</span><span class="tag tag-r">IN HER COLORS</span>
+        <div class="ba-handle" aria-hidden="true"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Compare today and in her colors">
+      </div>
+      <h3>Realistic previews</h3>
+      <p>Your own photo, your own features. Only the colors change.</p>
+    </article>
+    <article class="viz-card">
+      <p class="card-label">Recommended change</p>
+      <h3 class="viz-big">Warm your hair by half a tone</h3>
+      <dl class="viz-meta"><dt>Category</dt><dd>Hair</dd><dt>Effort</dt><dd>Low</dd><dt>Suggested</dt><dd>Golden brown gloss</dd></dl>
+      <p>Every recommendation is realistic and easy to apply.</p>
+    </article>
+    <article class="viz-card">
+      <p class="card-label">For every skin tone</p>
+      <div class="viz-faces"><img src="images/after.jpg" alt=""><img src="images/deep-after.jpg" alt=""><img src="images/fair-after.jpg" alt=""></div>
+      <p>Advice built on your own coloring, never a one-size-fits-all chart.</p>
+    </article>
+    <article class="viz-card">
+      <p class="card-label">Compare before you decide</p>
+      <div class="viz-scale"><span style="--c:#8FA3B8">Cooler</span><span class="on" style="--c:#7A8450">You</span><span style="--c:#B5603F">Warmer</span></div>
+      <p>See how a cooler or warmer shade changes your glow.</p>
+    </article>
+  </div>
+</section>
+
+<!-- =========================================================
+     11. TRUST
+     ========================================================= -->
+<section class="section section-alt">
+  <div class="container trust">
+    <div class="trust-big"><p class="big">5,000+</p><p>clients who changed the way they see themselves.</p></div>
+    <div class="trust-grid">
+      <div><span>01</span><h3>Certified color expert</h3><p>Every case is reviewed by a trained specialist.</p></div>
+      <div><span>02</span><h3>Easier than in person</h3><p>No appointment, no travel. 10 minutes from your couch.</p></div>
+      <div><span>03</span><h3>100% personalized</h3><p>No automated results, made just for you.</p></div>
+      <div><span>04</span><h3>6 in 10</h3><p>clients who had taken a free online test discover their season was wrong.*</p></div>
+    </div>
+  </div>
+  <blockquote class="quote container">
+    “I don't buy anything without checking my swatches now. I finally love how I look in photos.”
+    <cite>— First name, client</cite>
+  </blockquote>
+</section>
+
+<!-- =========================================================
+     10. CRITERIA (accordions)
+     ========================================================= -->
+<section class="section">
+  <div class="container center">
+    <p class="eyebrow">Included in your analysis</p>
+    <h2>30+ criteria<br><span class="thin">assessed</span></h2>
+  </div>
+  <div class="container accordions">
+    <details open>
+      <summary>Skin <small>8 assessments</small></summary>
+      <dl>
+        <dt>Undertone</dt><dd>Warm, cool or neutral: the foundation of your palette.</dd>
+        <dt>Depth</dt><dd>How light or deep your skin is.</dd>
+        <dt>Intensity</dt><dd>Whether your coloring suits bright or soft colors.</dd>
+        <dt>Redness</dt><dd>Areas prone to flushing, and the colors that emphasize them.</dd>
+        <dt>Radiance</dt><dd>How your skin reflects light.</dd>
+        <dt>Freckles &amp; pigmentation</dt><dd>Freckles, beauty marks and darker areas.</dd>
+        <dt>Pure white test</dt><dd>Does optical white brighten you or harden your features?</dd>
+        <dt>Black test</dt><dd>Does black near your face cast shadows?</dd>
+      </dl>
+    </details>
+    <details>
+      <summary>Eyes <small>6 assessments</small></summary>
+      <dl>
+        <dt>Iris color</dt><dd>The main shade of your eyes.</dd>
+        <dt>Flecks</dt><dd>Secondary tones within the iris.</dd>
+        <dt>Limbal ring</dt><dd>The dark ring around the iris and its intensity.</dd>
+        <dt>Iris / white contrast</dt><dd>The natural intensity of your gaze.</dd>
+        <dt>Brows</dt><dd>Their color and the ideal shade to fill them in.</dd>
+        <dt>Lashes</dt><dd>Their natural color and the most flattering mascara.</dd>
+      </dl>
+    </details>
+    <details>
+      <summary>Hair <small>5 assessments</small></summary>
+      <dl>
+        <dt>Natural color</dt><dd>Your base shade, even if you dye your hair.</dd>
+        <dt>Tones</dt><dd>Golden, copper, ash or neutral.</dd>
+        <dt>Depth</dt><dd>From lightest blonde to deepest brown.</dd>
+        <dt>Gray hair</dt><dd>How to work it into your palette.</dd>
+        <dt>Ideal dye shade</dt><dd>The tones that harmonize with your face.</dd>
+      </dl>
+    </details>
+    <details>
+      <summary>Overall harmony <small>4 assessments</small></summary>
+      <dl>
+        <dt>Overall contrast</dt><dd>The difference between your skin, eyes and hair.</dd>
+        <dt>Temperature</dt><dd>The overall warmth of your coloring.</dd>
+        <dt>Value</dt><dd>The dominant lightness of your face.</dd>
+        <dt>Chroma</dt><dd>Clear, pure colors or soft, muted ones.</dd>
+      </dl>
+    </details>
+  </div>
+</section>
+
+<!-- =========================================================
+     11. FAQ
+     ========================================================= -->
+<section class="section section-alt" id="faq">
+  <div class="container center">
+    <p class="eyebrow">FAQ</p>
+    <h2>Your questions</h2>
+  </div>
+  <div class="container accordions faq">
+    <details><summary>How does the online analysis work?</summary><p>You answer a short quiz, upload 3 to 5 photos taken in natural light, and your color expert analyzes them. You receive your report and palette by email within 48 hours.</p></details>
+    <details><summary>What if my hair is dyed?</summary><p>No problem: we'll ask for a photo of your roots or of you before coloring, and take it into account.</p></details>
+    <details><summary>Which photos should I send?</summary><p>No makeup, facing the camera, next to a window during the day, without artificial light. You'll receive a detailed photo guide after ordering.</p></details>
+    <details><summary>I already took a free online test. What's the difference?</summary><p>A free test gives you a season name and a standard palette. NUANCE measures your own skin, eyes and hair, tests 200+ shades against your face, and gives you precise makeup, hair and style recommendations that fit your personality. In fact, 6 in 10 clients who had taken a free test discover their season was wrong.*</p></details>
+    <details><summary>Does it work for every skin tone?</summary><p>Yes. From very fair to very deep skin, with natural or dyed hair, every analysis is based on your own measurements, not on a generic chart.</p></details>
+    <details><summary>Who sees my photos?</summary><p>Only your color expert. Your photos are never shared and are deleted as soon as your report is completed.</p></details>
+    <details><summary>Is it as accurate as an in-person session?</summary><p>With well-taken photos, yes. If anything is unclear, we'll ask for extra photos at no cost.</p></details>
+    <details><summary>Why online rather than an in-person session?</summary><p>Same expertise, far less effort: no appointment to book, no travel, no two-hour session. You answer a short quiz, take a few photos at home in about 10 minutes, and get a detailed report you can reread anytime.</p></details>
+  </div>
+</section>
+
+<!-- =========================================================
+     12. FINAL CTA (prix volontairement non affiché, il apparaît au paiement)
+     ========================================================= -->
+<section class="final-cta">
+  <div class="container center">
+    <h2>Ready to discover<br><span class="thin">your colors?</span></h2>
+    <p class="lead narrow">Your complete color analysis, a 36-color palette and your personal style guide.</p>
+    <a href="start.html" class="btn btn-dark cta-final">Start my analysis</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-row">
+    <span class="logo">NUANCE</span>
+    <nav>
+      <a href="#">Legal notice</a>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="#">Contact</a>
+    </nav>
+    <small>© 2026 NUANCE</small>
+  </div>
+</footer>
+
+<!-- Petit script : le menu devient opaque quand on fait défiler -->
+<script>
+  const nav = document.querySelector('.nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Analyse : valeurs qui varient en continu (effet "mesure en cours")
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  const eyes = [
+    [['#9A7A3F','Golden hazel'],['#B8742F','Amber'],['#5E6B3A','Olive'],['#3A2A1C','Medium']],
+    [['#6F8AA6','Steel blue'],['#C9B27A','Gold'],['#3D4E63','Slate'],['#2A2F38','Strong']],
+    [['#6E7A45','Moss green'],['#A87C3E','Honey'],['#4A5230','Forest'],['#2E2A1E','Soft']],
+    [['#5A3A24','Chestnut'],['#8A5A2E','Copper'],['#3A2416','Espresso'],['#1E140D','Strong']],
+  ];
+  let tick = 0;
+  function measure() {
+    const dot = document.getElementById('undertone-dot');
+    if (!dot) return;
+    dot.style.setProperty('--pos', rnd(15, 88).toFixed(0) + '%');
+    const L = rnd(38, 78), a = rnd(6, 16), b = rnd(12, 24);
+    const ita = Math.atan((L - 50) / b) * 180 / Math.PI;
+    const cat = ita > 55 ? 'Very light' : ita > 41 ? 'Light' : ita > 28 ? 'Intermediate' : ita > 10 ? 'Tan' : ita > -30 ? 'Brown' : 'Dark';
+    document.querySelector('[data-lab="L"]').textContent = L.toFixed(1);
+    document.querySelector('[data-lab="a"]').textContent = a.toFixed(1);
+    document.querySelector('[data-lab="b"]').textContent = b.toFixed(1);
+    document.querySelector('[data-lab="ita"]').textContent = ita.toFixed(0) + '°';
+    document.querySelector('[data-lab="cat"]').textContent = cat;
+    document.querySelectorAll('#skin-bars > div').forEach((row) => {
+      const v = rnd(15, 90).toFixed(0);
+      row.querySelector('i').style.setProperty('--w', v + '%');
+      row.querySelector('b').textContent = v + '%';
+    });
+    const set = eyes[tick % eyes.length];
+    document.querySelectorAll('#eye-detail > div').forEach((row, i) => {
+      row.querySelector('i').style.setProperty('--c', set[i][0]);
+      row.querySelector('b').textContent = set[i][1];
+    });
+    const lv = Math.floor(rnd(2, 10));
+    document.querySelectorAll('#hair-levels i').forEach((el, i) => el.classList.toggle('on', i === lv - 1));
+    document.getElementById('hair-label').textContent = 'Level ' + lv;
+    const g = document.getElementById('contrast-gauge');
+    const c = rnd(20, 85).toFixed(0);
+    g.style.setProperty('--val', c);
+    g.querySelector('span').textContent = c + '%';
+    tick++;
+  }
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    measure();
+    setInterval(measure, 1800);
+  }
+
+  // Curseur avant / après
+  document.querySelectorAll('.ba-slider input').forEach((range) => {
+    range.addEventListener('input', () => range.parentElement.style.setProperty('--pos', range.value + '%'));
+  });
+</script>
+</body>
+</html>

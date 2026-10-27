@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NUANCE — Start your analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", system-ui, sans-serif; color: #fff; min-height: 100vh; min-height: 100svh;
+      display: flex; align-items: center; justify-content: center; padding: 72px 16px 32px;
+      background:
+        radial-gradient(circle at 62% 30%, #C98B5A 0%, rgba(138,90,59,.9) 32%, transparent 62%),
+        radial-gradient(circle at 18% 85%, rgba(181,96,63,.55) 0%, transparent 45%),
+        linear-gradient(160deg, #8A5A3B 0%, #3A2A20 60%, #1F1712 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .back { position: fixed; top: 22px; left: 24px; font-size: 0.9rem; text-decoration: none; opacity: .85; display: flex; gap: 8px; align-items: center; }
+    .back:hover { opacity: 1; }
+    .card {
+      width: 100%; max-width: 1000px; display: grid; grid-template-columns: 1fr 1fr;
+      border-radius: 24px; overflow: hidden;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 40px 80px rgba(0,0,0,.35);
+      animation: rise .8s ease both;
+    }
+    @keyframes rise { from { opacity: 0; transform: translateY(20px); } }
+    .left, .right { padding: 44px; display: flex; flex-direction: column; }
+    .left { justify-content: space-between; min-height: 420px; border-right: 1px solid rgba(255,255,255,.12); }
+    .logo { font-weight: 600; letter-spacing: .2em; font-size: .95rem; }
+    h1 { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; }
+    h1 span { font-weight: 300; color: rgba(255,255,255,.7); }
+    .left p { margin-top: 14px; color: rgba(255,255,255,.75); max-width: 360px; }
+    .proof { font-family: "IBM Plex Mono", monospace; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
+    form { margin-top: auto; display: grid; gap: 14px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    input {
+      width: 100%; font: inherit; color: #fff; padding: 15px 16px; border-radius: 12px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); outline: none;
+      transition: border-color .2s, background .2s;
+    }
+    input::placeholder { color: rgba(255,255,255,.55); }
+    input:focus { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.12); }
+    button {
+      font: inherit; font-weight: 500; cursor: pointer; border: 0; border-radius: 999px;
+      background: #fff; color: #241C17; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
+      transition: transform .2s;
+    }
+    button:hover { transform: translateY(-1px); }
+    button:disabled { opacity: .6; cursor: wait; }
+    button span { border-left: 1px solid #E1D8CD; padding-left: 16px; font-size: 1.1rem; }
+    .legal { font-size: .8rem; text-align: center; color: rgba(255,255,255,.7); }
+    .error { font-size: .85rem; color: #FFD2C2; min-height: 1em; }
+    @media (max-width: 760px) {
+      .card { grid-template-columns: 1fr; }
+      .left { min-height: 0; gap: 40px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+      .left, .right { padding: 28px; }
+      .right { gap: 32px; }
+      .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back">‹ Back</a>
+
+  <main class="card">
+    <div class="left">
+      <span class="logo">NUANCE</span>
+      <div>
+        <h1>Discover<br><span>your true colors</span></h1>
+        <p>Your personalized color analysis and glow-up plan, built around your features and your personality.</p>
+      </div>
+    </div>
+
+    <div class="right">
+      <p class="proof">5,000+ people already analyzed</p>
+      <form id="start-form" novalidate>
+        <div class="row">
+          <input name="first_name" placeholder="First name" autocomplete="given-name" required>
+          <input name="last_name" placeholder="Last name" autocomplete="family-name" required>
+        </div>
+        <input name="email" type="email" placeholder="Email" autocomplete="email" required>
+        <p class="error" id="error" role="alert"></p>
+        <button type="submit" id="submit">Continue <span>→</span></button>
+        <p class="legal">See how we use your details in our <a href="#">Privacy Policy</a>.</p>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    // 👉 À REMPLIR
+    // Lien de paiement Stripe (Payment Link à 49 €)
+    const STRIPE_LINK = 'https://buy.stripe.com/XXXXXXXX';
+    // Où enregistrer nom / prénom / email (ex. Formspree : https://formspree.io/f/XXXXXX). Laisse vide pour ne rien enregistrer.
+    const FORM_ENDPOINT = '';
+
+    const form = document.getElementById('start-form');
+    const error = document.getElementById('error');
+    const submit = document.getElementById('submit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      if (!data.first_name || !data.last_name || !/^\S+@\S+\.\S+$/.test(data.email)) {
+        error.textContent = 'Please fill in your name and a valid email.';
+        return;
+      }
+      error.textContent = '';
+      submit.disabled = true;
+      if (FORM_ENDPOINT) {
+        try {
+          await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+          });
+        } catch (_) { /* on continue vers le paiement même si l'enregistrement échoue */ }
+      }
+      // Stripe pré-remplit l'email au paiement
+      window.location.href = STRIPE_LINK + '?prefilled_email=' + encodeURIComponent(data.email);
+    });
+  </script>
+</body>
+</html>
