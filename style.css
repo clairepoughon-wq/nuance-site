@@ -1280,9 +1280,9 @@ main > section.report-section:not(#_):not(#_) { background: var(--hero-dye) !imp
   position: absolute; z-index: 0; bottom: 0; right: max(2vw, calc((100vw - var(--max)) / 2 - 40px));
   height: min(92vh, 920px); height: min(92svh, 920px); aspect-ratio: 1100 / 1474; max-width: 52vw;
   /* le bas du pull se fond dans le fond, comme une photo posée dans la lumière */
-  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 34%), linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 9%), linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
   -webkit-mask-composite: source-in;
-          mask-image: linear-gradient(to top, transparent 0%, #000 34%), linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
+          mask-image: linear-gradient(to top, transparent 0%, #000 9%), linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
           mask-composite: intersect;
   filter: drop-shadow(0 30px 60px rgba(60,48,36,.18));
   animation: heroModel 1.4s .1s ease both; pointer-events: none;
@@ -1292,13 +1292,23 @@ main > section.report-section:not(#_):not(#_) { background: var(--hero-dye) !imp
 .hero-content h1, .hero-sub, .hero-proof { max-width: 640px; }
 .hero::after { display: none; } /* le portrait remplace les mesures en filigrane */
 @media (max-width: 900px) {
-  /* mobile : le portrait passe au-dessus du texte au lieu de se glisser dessous */
-  .hero { justify-content: flex-start; padding-top: 64px; }
-  .hero-model { position: relative; right: auto; bottom: auto; display: block; margin: 0 auto -48px;
-    height: 48svh; max-width: 100%; animation: none;
-    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 40%), linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
-            mask-image: linear-gradient(to top, transparent 0%, #000 40%), linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%); }
+  /* mobile : portrait plein écran, texte posé en bas sur un voile sombre */
+  .hero { justify-content: flex-end; padding-top: 0; min-height: 100svh; }
+  .hero-model { position: absolute; top: 0; bottom: auto; left: 50%; right: auto; transform: translateX(-50%);
+    height: 100%; max-width: none; margin: 0; animation: none; filter: none;
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 12%); mask-image: linear-gradient(to top, transparent 0%, #000 12%); }
+  .hero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(to top, rgba(38,30,24,.92) 0%, rgba(38,30,24,.78) 26%, rgba(38,30,24,.35) 46%, rgba(38,30,24,0) 62%); }
+  .hero .hero-model-tag, .hero .hero-pillars { display: none; }
+  .hero-content { padding: 0 20px 36px; z-index: 2; }
+  .hero-proof { margin-bottom: .6rem; }
+  .hero h1 { font-size: clamp(2.3rem, 10.5vw, 3rem); line-height: 1.02; margin-bottom: .9rem; }
+  .hero-sub { font-size: 1rem; line-height: 1.45; margin-bottom: 1.4rem; color: rgba(255,255,255,.86); }
+  .hero-ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hero-ctas .btn { justify-content: center; padding: 16px 12px; font-size: 1rem; }
+  .hero .btn-ghost { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.28); }
 }
+
 
 
 /* Fondu avant → après dans le hero (10 s en boucle) */
@@ -1328,4 +1338,16 @@ main > section.report-section:not(#_):not(#_) { background: var(--hero-dye) !imp
   -webkit-mask-composite: source-in;
           mask-image: linear-gradient(to top, transparent 0%, #000 28%), linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%);
           mask-composite: intersect;
+}
+
+/* ---------- Mobile : analyse en une seule pile lisible (le bloc ci-dessus forçait 3 colonnes) ---------- */
+@media (max-width: 900px) {
+  .section-lab .analysis { grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
+  .section-lab .analysis-center { order: -1; grid-column: 1 / -1; margin: 0 -16px 8px; align-self: auto; }
+  .section-lab .model { height: auto; margin: 0; }
+  .section-lab .model img { width: 100%; height: auto; max-height: 62svh; object-fit: contain; }
+  .section-lab .analysis > .analysis-col:first-child, .section-lab .analysis > .analysis-col:last-child { margin: 0; padding-bottom: 0; }
+  .section-lab .card { padding: 12px; font-size: .82rem; }
+  .section-lab .card-label { font-size: .66rem; }
+  .section-lab .lab b, .section-lab .scale, .section-lab .ita em { font-size: .68rem; }
 }
