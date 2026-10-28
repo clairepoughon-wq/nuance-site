@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>NUANCE — Thank you</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", system-ui, sans-serif; color: #fff; min-height: 100vh; min-height: 100svh;
+      display: flex; align-items: center; justify-content: center; padding: 72px 16px 32px;
+      background:
+        radial-gradient(ellipse 45% 60% at 70% 40%, rgba(236,228,217,.95) 0%, rgba(236,228,217,0) 62%),
+        radial-gradient(ellipse 60% 80% at 0% 30%, rgba(120,106,90,.75) 0%, transparent 60%),
+        linear-gradient(160deg, #9C8E7C 0%, #B8AA97 45%, #CDBFAC 75%, #A89A87 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+    .card {
+      width: 100%; max-width: 620px; padding: 48px 44px; border-radius: 24px; text-align: center;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 40px 80px rgba(0,0,0,.25);
+    }
+    .logo { font-weight: 600; letter-spacing: .2em; font-size: .95rem; }
+    .tick { width: 56px; height: 56px; margin: 36px auto 24px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: #2E2924; font-size: 1.4rem; }
+    h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.08; }
+    h1 span { font-weight: 300; color: rgba(255,255,255,.75); }
+    p { margin-top: 16px; color: rgba(255,255,255,.85); }
+    .steps { margin: 32px 0; display: grid; gap: 10px; text-align: left; }
+    .steps div { display: flex; gap: 18px; padding: 12px 16px; border-radius: 12px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); }
+    .steps span { font-family: "IBM Plex Mono", monospace; font-size: .8rem; opacity: .75; padding-top: 2px; }
+    small { display: block; margin-top: 4px; font-size: .8rem; color: rgba(255,255,255,.7); }
+  </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1257359486587680');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1257359486587680&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+  <main class="card">
+    <span class="logo">NUANCE</span>
+    <div class="tick">✓</div>
+    <h1>Thank you!<br><span>Your analysis starts now</span></h1>
+    <p>Your payment is confirmed. A receipt is on its way to your inbox.</p>
+    <p>Within the next few minutes, you'll receive an email with everything you need to get started.</p>
+    <div class="steps">
+      <div><span>[1]</span>Open the email from NUANCE with your instructions</div>
+      <div><span>[2]</span>Answer the quiz about your style, habits and personality</div>
+      <div><span>[3]</span>Send your photos following our simple photo guide</div>
+      <div><span>[4]</span>Receive your full report by email</div>
+    </div>
+    <small>Can't find the email? Check your spam or promotions folder.</small>
+  </main>
+
+  <script>
+    // Meta : achat confirmé (une seule fois par paiement, même si la page est rechargée)
+    const session = new URLSearchParams(location.search).get('session_id') || 'no-session';
+    try {
+      if (window.fbq && localStorage.getItem('nuance_purchase') !== session) {
+        fbq('track', 'Purchase', { value: 49, currency: 'EUR' }, { eventID: session });
+        localStorage.setItem('nuance_purchase', session);
+      }
+    } catch (_) { if (window.fbq) fbq('track', 'Purchase', { value: 49, currency: 'EUR' }); }
+  </script>
+</body>
+</html>
