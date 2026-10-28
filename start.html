@@ -113,8 +113,8 @@
     // 👉 À REMPLIR
     // Lien de paiement Stripe (Payment Link à 49 €)
     const STRIPE_LINK = 'https://buy.stripe.com/14A3cv1hMckucuOeO328800';
-    // Où enregistrer nom / prénom / email (ex. Formspree : https://formspree.io/f/XXXXXX). Laisse vide pour ne rien enregistrer.
-    const FORM_ENDPOINT = '';
+    // URL /exec du script Google Sheet (google-sheet/nuance-formulaires.gs). Laisse vide pour ne rien enregistrer.
+    const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyCJDBmp3ZqSwuhO_u2b2aiSN4jhZTzy-WP9t7tI_aTPJz5Xem3vZOiyjRpOJE3-6vo/exec';
 
     const form = document.getElementById('start-form');
     const error = document.getElementById('error');
@@ -131,11 +131,14 @@
       submit.disabled = true;
       if (FORM_ENDPOINT) {
         try {
-          await fetch(FORM_ENDPOINT, {
+          // text/plain : Google Apps Script n'accepte pas les requêtes JSON « préliminaires » (CORS)
+          const save = fetch(FORM_ENDPOINT, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(data)
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ form: 'Leads', ...data, source: location.search.slice(1) })
           });
+          // au plus 4 secondes d'attente, pour ne jamais bloquer le paiement
+          await Promise.race([save, new Promise(r => setTimeout(r, 4000))]);
         } catch (_) { /* on continue vers le paiement même si l'enregistrement échoue */ }
       }
       // Meta : la personne a laissé ses coordonnées, puis part au paiement
