@@ -1351,3 +1351,125 @@ main > section.report-section:not(#_):not(#_) { background: var(--hero-dye) !imp
   .section-lab .card-label { font-size: .66rem; }
   .section-lab .lab b, .section-lab .scale, .section-lab .ita em { font-size: .68rem; }
 }
+
+/* =====================================================================
+   Calibrage sur Qoves (mesuré à l'émulateur, tool/compare_sites.py)
+   Ordinateur : tailles de référence à 1440 px, réduites proportionnellement
+   en dessous (--u = 1px à 1440 et plus). Téléphone : tailles fixes.
+   ===================================================================== */
+:root { --u: min(1px, calc(100vw / 1440)); }
+h1, h2 { font-weight: 400; letter-spacing: -0.015em; }
+
+@media (min-width: 901px) {
+  h2 { font-size: calc(48 * var(--u)); line-height: calc(56 * var(--u)); }
+  .lead { font-size: max(15px, calc(16 * var(--u))); line-height: 1.5; }
+
+  /* Navigation : 96 px de haut, marges 56 px, boutons 40 px */
+  .nav { padding: calc(28 * var(--u)) calc(56 * var(--u)); }
+  .nav-links { gap: calc(32 * var(--u)); font-size: max(12px, calc(14 * var(--u))); }
+  .nav-actions { gap: calc(32 * var(--u)); font-size: max(12px, calc(14 * var(--u))); }
+  .nav .btn-sm { height: calc(40 * var(--u)); padding: 0 calc(24 * var(--u)); font-size: max(12px, calc(14 * var(--u))); font-weight: 400; }
+
+  /* Hero : bloc de texte calé en haut à gauche d'un conteneur de 1304 px */
+  .hero { justify-content: flex-start; }
+  .hero-content { width: calc(1304 * var(--u)); max-width: none; margin: calc(208 * var(--u)) auto 0; padding: 0; animation: none; }
+  .hero-proof { font-size: max(13px, calc(16 * var(--u))); line-height: 1.5; margin-bottom: calc(30 * var(--u)); }
+  .hero .hero-content h1 { font-size: calc(56 * var(--u)); line-height: calc(64 * var(--u)); max-width: none; margin-bottom: calc(24 * var(--u)); }
+  .hero .hero-content h1 .thin { font-weight: 400; }
+  .hero .hero-sub { font-size: max(13px, calc(16 * var(--u))); line-height: 1.5; max-width: calc(520 * var(--u)); margin-bottom: calc(40 * var(--u)); }
+  .hero-ctas { gap: calc(16 * var(--u)); }
+  .hero-ctas .btn { height: calc(48 * var(--u)); padding: 0 calc(24 * var(--u)); font-size: max(13px, calc(16 * var(--u))); font-weight: 400; }
+
+  /* Trois arguments en bas à gauche, séparés par un filet */
+  .hero .hero-pillars { position: absolute; left: calc(50% - 652 * var(--u)); bottom: calc(100 * var(--u)); width: auto; max-width: none;
+    margin: 0; padding: 0; border: 0; display: flex; gap: calc(20 * var(--u)); }
+  .hero .hero-pillars > div + div { border-left: 1px solid rgba(255,255,255,.3); padding-left: calc(20 * var(--u)); }
+  .hero .hero-pillars strong { font-size: max(13px, calc(16 * var(--u))); line-height: 1.5; font-weight: 400; }
+  .hero .hero-pillars span { font-size: max(12px, calc(14 * var(--u))); line-height: 1.43; margin-top: calc(6 * var(--u)); display: block; }
+}
+
+@media (max-width: 900px) {
+  h2 { font-size: 32px; line-height: 36px; }
+  .lead { font-size: 15px; line-height: 1.45; }
+  .nav { padding: 16px; }
+  .nav-actions { grid-column: 3; }
+  .nav .btn-sm { height: 32px; padding: 0 16px; font-size: 12px; font-weight: 500; }
+  .hero .hero-content { padding: 0 16px 24px; }
+  .hero .hero-proof { font-size: 14px; line-height: 20px; margin-bottom: 2px; }
+  .hero .hero-content h1 { font-size: 32px; line-height: 36px; margin-bottom: 8px; }
+  .hero .hero-content h1 .thin { font-weight: 400; }
+  .hero .hero-sub { font-size: 14px; line-height: 20px; margin-bottom: 32px; }
+  .hero .hero-ctas { gap: 16px; }
+  .hero .hero-ctas .btn { height: 48px; padding: 0 12px; font-size: 16px; font-weight: 400; }
+}
+
+/* Portrait du hero : plus grand, il déborde en bas comme une photo plein cadre */
+@media (min-width: 901px) {
+  .hero-model { top: calc(130 * var(--u)); bottom: auto; right: auto; left: calc(50% - 60 * var(--u)); height: max(calc(912 * var(--u)), calc(100vh - 130 * var(--u) + 80px)); max-width: none; transform: none;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 9%); mask-image: linear-gradient(to right, transparent 0%, #000 9%); }
+  .hero-model-tag { top: 46%; left: 4%; }
+}
+@media (max-width: 900px) {
+  .hero-model { height: 136%; top: -9%; -webkit-mask-image: none; mask-image: none; }
+  /* bandeau blanc en bas du hero, à la place des logos presse de Qoves */
+  .hero .hero-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; position: relative; z-index: 2;
+    background: #fff; color: var(--ink); padding: 16px 12px; margin: 0; border: 0; text-align: center; }
+  .hero .hero-pillars > div + div { border-left: 1px solid var(--line); padding-left: 8px; }
+  .hero .hero-pillars strong { font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink); }
+  .hero .hero-pillars span { font-size: 11px; line-height: 14px; color: var(--muted); display: block; margin-top: 2px; }
+}
+
+/* Menu défilé : pilule flottante translucide (mesures Qoves) */
+.nav.scrolled { color: #fff; background: rgba(52,45,39,.55); -webkit-backdrop-filter: blur(40px); backdrop-filter: blur(40px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.22); border-radius: 999px; }
+.nav.scrolled .btn-light { background: rgba(255,255,255,.2); color: #fff; box-shadow: none; }
+@media (min-width: 901px) {
+  .nav.scrolled { top: calc(16 * var(--u)); left: calc(40 * var(--u)); right: calc(40 * var(--u)); padding: calc(12 * var(--u)) calc(10 * var(--u)) calc(12 * var(--u)) calc(24 * var(--u)); }
+}
+@media (max-width: 900px) {
+  .nav.scrolled { top: 16px; left: 16px; right: 16px; padding: 8px 8px 8px 16px; }
+}
+
+/* ---------- Mobile façon Qoves : en-têtes centrés, listes compactes ---------- */
+@media (max-width: 900px) {
+  main > section:not(.hero) h2 { text-align: center; }
+  main > section:not(.hero) .eyebrow { display: table; margin-left: auto; margin-right: auto; font-size: 11px; }
+  main > section:not(.hero) h2 + .lead, main > section:not(.hero) .lead { text-align: center; margin-left: auto; margin-right: auto; }
+
+  /* L'ancienne / la nouvelle méthode : lignes serrées, pastille à gauche */
+  .glow .track { gap: 2px; }
+  .glow .track::before, .glow .new .track::before { top: 8px; bottom: 8px; left: 7px; right: auto; width: 1px; height: auto; }
+  .glow .track li { padding: 8px 0 8px 32px; }
+  .glow .track li::before { top: 11px; left: 0; width: 15px; height: 15px; }
+  .glow .track span { display: inline; margin: 0 8px 0 0; font-size: 10px; }
+  .glow .track strong { display: inline; font-size: 14px; }
+  .glow .track p { font-size: 12px; line-height: 1.4; margin-top: 2px; }
+  .glow .new .track { gap: 6px; }
+  .glow .new .track::before { left: 23px; }
+  .glow .new .track li { padding: 12px 14px 12px 44px; }
+  .glow .new .track li::before { top: 15px; left: 16px; }
+  .glow .quote { margin-top: 32px; font-size: 1.05rem; }
+
+  /* « You will discover » : une ligne par élément, comme « You will learn » */
+  .discover-grid { grid-template-columns: 1fr; gap: 8px; }
+  .discover-grid article { display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: start; padding: 14px 16px; }
+  .discover-grid article::before { inset: 0 auto 0 0; width: 3px; height: auto; }
+  .discover-grid span { grid-row: span 2; padding-top: 2px; }
+  .discover-grid h3 { margin: 0 0 2px; font-size: 15px; }
+  .discover-grid p { font-size: 13px; line-height: 1.4; }
+
+  /* Analyse : le bandeau de nuances passe au-dessus du portrait au lieu de le traverser */
+  .section-lab .shade-marquee { position: relative; inset: auto; margin: 4px -16px 12px; }
+  .section-lab .shade-track i { width: 40px; height: 40px; border-radius: 10px; }
+}
+@media (max-width: 900px) {
+  /* « How it works » : étapes en lignes compactes */
+  #how .steps { margin-top: 28px; gap: 8px; margin-bottom: 24px; }
+  #how .step { min-height: 0; padding: 14px 16px; flex-direction: row; align-items: baseline; gap: 12px; justify-content: flex-start; }
+  #how .step span { flex: 0 0 auto; font-size: 12px; }
+  #how .step p { font-size: 14px; line-height: 1.4; }
+}
+/* Tablette : le portrait plein écran serait trop zoomé, on garde la tête entière */
+@media (min-width: 600px) and (max-width: 900px) {
+  .hero-model { height: 104%; top: 0; }
+}
