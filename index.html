@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Bodoni+Moda:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=26">
+  <link rel="stylesheet" href="style.css?v=29">
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -57,11 +57,25 @@
      ========================================================= -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <!-- Fondu en boucle, même cadrage : top bleu, puis top blanc, puis top olive (dans ses couleurs) -->
-  <div class="hero-model" role="img" aria-label="The same woman in three looks: ash blonde hair and royal blue top, brown hair and white sweater, then copper hair, olive sweater and gold earrings">
-    <img src="images/hero-olive.webp" alt="">
-    <img src="images/hero-white.webp" class="hm-white" alt="">
-    <img src="images/hero-blue.webp" class="hm-blue" alt="" fetchpriority="high">
+  <!-- Desktop : vidéo plein hero (lilas → kaki, aller-retour). Mobile : fondu d'images en attendant la vidéo mobile -->
+  <video class="hero-video" muted loop playsinline preload="none" poster="images/hero-desktop-poster.jpg" aria-hidden="true"
+         data-webm="video/hero-desktop.webm" data-mp4="video/hero-desktop.mp4"></video>
+  <script>
+    (function () {
+      var v = document.querySelector('.hero-video');
+      if (!v || !matchMedia('(min-width: 901px)').matches) return;
+      [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (s) {
+        var el = document.createElement('source'); el.src = v.dataset[s[0]]; el.type = s[1]; v.appendChild(el);
+      });
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.load(); return; }
+      v.autoplay = true; v.load(); v.play().catch(function () {});
+    })();
+  </script>
+  <!-- Fondu en boucle, même cadrage : t-shirt lilas, puis t-shirt blanc, puis t-shirt kaki (dans ses couleurs) -->
+  <div class="hero-model" role="img" aria-label="The same woman in three looks: ash blonde hair, lilac T-shirt and silver jewelry, then copper hair and a white T-shirt, then copper hair, khaki T-shirt and gold jewelry">
+    <img src="images/hero-khaki.webp" alt="">
+    <img src="images/hero-white.webp?v=2" class="hm-2" alt="">
+    <img src="images/hero-lilac.webp" class="hm-1" alt="" fetchpriority="high">
   </div>
   <div class="hero-content">
     <p class="hero-proof">Join <strong>5,000+</strong> people</p>
@@ -313,7 +327,7 @@
       </article>
     </div>
   </div>
-    <img class="a2-bust" src="images/bust-cutout.webp" alt="Woman during her color analysis">
+    <img class="a2-bust" src="images/bust-cutout.webp?v=2" alt="Woman during her color analysis">
   </div>
 </section>
 
@@ -348,7 +362,7 @@
   <!-- Chaque ligne : une petite illustration en CSS (aucune image à générer) -->
   <div class="container learn">
     <article>
-      <div class="lv lv-read" aria-hidden="true"><img src="images/bust-cutout.webp" alt=""><i style="--x:47%;--y:36%"></i><i style="--x:60%;--y:44%"></i><i style="--x:43%;--y:56%"></i><b>L* 64.2 · ITA 36°</b></div>
+      <div class="lv lv-read" aria-hidden="true"><img src="images/bust-cutout.webp?v=2" alt=""><i style="--x:47%;--y:36%"></i><i style="--x:60%;--y:44%"></i><i style="--x:43%;--y:56%"></i><b>L* 64.2 · ITA 36°</b></div>
       <div><span>01</span><h3>A detailed reading of your features</h3><p>Skin tone, undertone, contrast and 30+ indicators.</p></div>
     </article>
     <article>
@@ -590,8 +604,8 @@
     <div class="plan-frame" aria-hidden="true">
       <div class="plan-doc">
         <div class="plan-photos">
-          <figure><img src="images/colors-before.jpg" alt=""><span>BEFORE</span></figure>
-          <figure><img src="images/colors-after.jpg" alt=""><span>AFTER</span></figure>
+          <figure><img src="images/plan-before.jpg?v=2" alt=""><span>BEFORE</span></figure>
+          <figure><img src="images/plan-after.jpg?v=2" alt=""><span>AFTER</span></figure>
         </div>
         <ol class="plan-steps">
           <li class="plan-step small"><b>1</b><div class="plan-box"><h4>Your foundations</h4><em>Week 1</em></div></li>
