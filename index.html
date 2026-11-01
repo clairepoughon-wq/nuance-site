@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Bodoni+Moda:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=29">
+  <link rel="stylesheet" href="style.css?v=30">
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -57,16 +57,20 @@
      ========================================================= -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <!-- Desktop : vidéo plein hero (lilas → kaki, aller-retour). Mobile : fondu d'images en attendant la vidéo mobile -->
-  <video class="hero-video" muted loop playsinline preload="none" poster="images/hero-desktop-poster.jpg?v=3" aria-hidden="true"
-         data-webm="video/hero-desktop.webm?v=3" data-mp4="video/hero-desktop.mp4?v=3"></video>
+  <!-- Vidéo plein hero (lilas → kaki, aller-retour) : version desktop ou mobile selon l'écran. Sans JS, le fondu d'images reste affiché -->
+  <video class="hero-video" muted loop playsinline preload="none" aria-hidden="true"
+         data-webm="video/hero-desktop.webm?v=3" data-mp4="video/hero-desktop.mp4?v=3" data-poster="images/hero-desktop-poster.jpg?v=3"
+         data-webm-m="video/hero-mobile.webm?v=1" data-mp4-m="video/hero-mobile.mp4?v=1" data-poster-m="images/hero-mobile-poster.jpg?v=1"></video>
   <script>
     (function () {
       var v = document.querySelector('.hero-video');
-      if (!v || !matchMedia('(min-width: 901px)').matches) return;
+      if (!v) return;
+      var m = matchMedia('(max-width: 900px)').matches ? 'M' : '';
+      v.poster = v.dataset['poster' + m];
       [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (s) {
-        var el = document.createElement('source'); el.src = v.dataset[s[0]]; el.type = s[1]; v.appendChild(el);
+        var el = document.createElement('source'); el.src = v.dataset[s[0] + m]; el.type = s[1]; v.appendChild(el);
       });
+      v.parentNode.classList.add('has-video');
       if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.load(); return; }
       v.autoplay = true; v.load(); v.play().catch(function () {});
     })();
