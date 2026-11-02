@@ -130,21 +130,19 @@
       error.textContent = '';
       submit.disabled = true;
       if (FORM_ENDPOINT) {
+        // Envoi en arrière-plan : il continue même quand la page part vers Stripe, donc aucune attente
+        const body = JSON.stringify({ form: 'Leads', ...data, source: location.search.slice(1) });
         try {
-          // text/plain : Google Apps Script n'accepte pas les requêtes JSON « préliminaires » (CORS)
-          const save = fetch(FORM_ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({ form: 'Leads', ...data, source: location.search.slice(1) })
-          });
-          // au plus 4 secondes d'attente, pour ne jamais bloquer le paiement
-          await Promise.race([save, new Promise(r => setTimeout(r, 4000))]);
+          const blob = new Blob([body], { type: 'text/plain;charset=utf-8' });
+          if (!(navigator.sendBeacon && navigator.sendBeacon(FORM_ENDPOINT, blob))) {
+            fetch(FORM_ENDPOINT, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body });
+          }
         } catch (_) { /* on continue vers le paiement même si l'enregistrement échoue */ }
       }
       // Meta : la personne a laissé ses coordonnées, puis part au paiement
       if (window.fbq) { fbq('track', 'Lead'); fbq('track', 'InitiateCheckout', { value: 49, currency: 'EUR' }); }
-      // Stripe pré-remplit l'email au paiement
-      window.location.href = STRIPE_LINK + '?prefilled_email=' + encodeURIComponent(data.email);
+      // Stripe pré-remplit l'email au paiement (0,2 s pour laisser partir les événements Meta)
+      setTimeout(() => { window.location.href = STRIPE_LINK + '?prefilled_email=' + encodeURIComponent(data.email); }, 200);
     });
   </script>
 </body>
