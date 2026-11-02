@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Bodoni+Moda:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=38">
+  <link rel="stylesheet" href="style.css?v=40">
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -243,7 +243,7 @@
   </div>
   <!-- 👉 Source à vérifier : étude introuvable dans les bases publiques (voir message) -->
   <blockquote class="study container">
-    <p>People were more often judged attractive when wearing colors recommended by a professional color analyst.</p>
+    <p>“People were more often judged attractive when wearing colors recommended by a professional color analyst.”</p>
     <cite>Nonaka et al., Waseda University, 2023 — <em>Effects of personal color on attractiveness ratings</em></cite>
   </blockquote>
 </section>
@@ -709,7 +709,7 @@
     <p class="eyebrow">Included in your analysis</p>
     <h2>30+ criteria<br><span class="thin">assessed</span></h2>
   </div>
-  <div class="container accordions">
+  <div class="container accordions criteria">
     <details open>
       <summary>Skin <small>10 assessments</small></summary>
       <dl>
@@ -847,6 +847,7 @@
     <details><summary>What if my hair is dyed?</summary><p>No problem: we'll ask for a photo of your roots or of you before coloring, and take it into account.</p></details>
     <details><summary>Which photos should I send?</summary><p>No makeup, facing the camera, next to a window during the day, without artificial light. You'll receive a detailed photo guide after ordering.</p></details>
     <details><summary>I already took a free online test. What's the difference?</summary><p>A free test gives you a season name and a standard palette. NUANCE measures your own skin, eyes and hair, tests 200+ shades against your face, and gives you precise makeup, hair and style recommendations that fit your personality. In fact, 6 in 10 clients who had taken a free test discover their season was wrong.*</p></details>
+    <details><summary>Why not just ask ChatGPT or Claude?</summary><p>AI chatbots read your photo as it is, with your phone's filters, white balance and lighting. Ask twice and you can get two different seasons. We correct the light in each photo, measure your coloring on 35 criteria, then your color expert reviews every result by eye and cross-checks your photos. The answer you get is checked, consistent, and explained.</p></details>
     <details><summary>Does it work for every skin tone?</summary><p>Yes. Whatever your skin color and undertone, from very fair to very deep, and including Black and mixed-heritage skin that generic charts often get wrong, your analysis is based on your own measurements, not on a generic chart. Natural or dyed hair, it works too.</p></details>
     <details><summary>Who sees my photos?</summary><p>Only your color expert. Your photos are never shared and are deleted as soon as your report is completed.</p></details>
     <details><summary>Is it as accurate as an in-person session?</summary><p>Our analysis combines digital color measurements with comparisons across your photos and color tests to assess your undertone, depth, intensity and contrast. We cross-check these observations rather than relying on a single image. Photo quality and lighting matter, so we'll ask for new photos if anything is unclear.</p></details>
@@ -937,6 +938,7 @@
   }
 
   // Curseur avant / après
+  if (matchMedia('(max-width: 900px)').matches) document.querySelectorAll('.criteria details[open]').forEach((d) => d.removeAttribute('open'));
   document.querySelectorAll('.ba-slider input').forEach((range) => {
     range.addEventListener('input', () => range.parentElement.style.setProperty('--pos', range.value + '%'));
   });
