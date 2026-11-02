@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Bodoni+Moda:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=33">
+  <link rel="stylesheet" href="style.css?v=38">
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -59,8 +59,8 @@
   <div class="hero-bg"></div>
   <!-- Vidéo plein hero (lilas → kaki, aller-retour) : version desktop ou mobile selon l'écran. Sans JS, le fondu d'images reste affiché -->
   <video class="hero-video" muted loop playsinline preload="none" aria-hidden="true"
-         data-webm="video/hero-desktop.webm?v=3" data-mp4="video/hero-desktop.mp4?v=3" data-poster="images/hero-desktop-poster.jpg?v=3"
-         data-webm-m="video/hero-mobile.webm?v=1" data-mp4-m="video/hero-mobile.mp4?v=1" data-poster-m="images/hero-mobile-poster.jpg?v=1"></video>
+         data-webm="video/hero-desktop.webm?v=4" data-mp4="video/hero-desktop.mp4?v=4" data-poster="images/hero-desktop-poster.jpg?v=4"
+         data-webm-m="video/hero-mobile.webm?v=2" data-mp4-m="video/hero-mobile.mp4?v=2" data-poster-m="images/hero-mobile-poster.jpg?v=2"></video>
   <script>
     (function () {
       var v = document.querySelector('.hero-video');
@@ -345,12 +345,12 @@
       <h2>Taking into<br><span class="thin">account your…</span></h2>
     </div>
     <div class="feature-list">
-      <div><h3>Skin</h3><p>Depth, undertone and how your skin reacts to light.</p></div>
-      <div><h3>Hair</h3><p>Your natural shade, and your current color if you dye it.</p></div>
-      <div><h3>Eyes</h3><p>Iris color, intensity and contrast with the whites of your eyes.</p></div>
-      <div><h3>Lifestyle &amp; clothing style</h3><p>Classic, minimal, bold, trendy, etc.</p></div>
-      <div><h3>Personal taste</h3><p>The colors you love, and the ones you'd never wear.</p></div>
-      <div><h3>Personality</h3><p>Soft, striking, calm, vibrant… colors that look like you inside and out.</p></div>
+      <div><img class="ta-img" src="images/crops/ta-skin.webp?v=3" alt="Skin measured at the forehead, cheeks and chin" loading="lazy"><div><h3>Skin</h3><p>Depth, undertone and how your skin reacts to light.</p></div></div>
+      <div><img class="ta-img" src="images/crops/ta-hair.webp?v=3" alt="Hair color measured at the roots, lengths and ends" loading="lazy"><div><h3>Hair</h3><p>Your natural shade, and your current color if you dye it.</p></div></div>
+      <div><img class="ta-img" src="images/crops/ta-eyes.webp?v=3" alt="Iris base, flecks and outer rim measured" loading="lazy"><div><h3>Eyes</h3><p>Iris color, intensity and contrast with the whites of your eyes.</p></div></div>
+      <div><img class="ta-img" src="images/crops/ta-style.webp?v=2" alt="" loading="lazy"><div><h3>Lifestyle &amp; clothing style</h3><p>Classic, minimal, bold, trendy, etc.</p></div></div>
+      <div><img class="ta-img" src="images/crops/ta-taste.webp" alt="" loading="lazy"><div><h3>Personal taste</h3><p>The colors you love, and the ones you'd never wear.</p></div></div>
+      <div><img class="ta-img" src="images/crops/ta-personality.webp?v=2" alt="" loading="lazy"><div><h3>Personality</h3><p>Soft, striking, calm, vibrant… colors that look like you inside and out.</p></div></div>
     </div>
   </div>
 </section>
@@ -366,27 +366,27 @@
   <!-- Chaque ligne : une petite illustration en CSS (aucune image à générer) -->
   <div class="container learn">
     <article>
-      <div class="lv lv-read" aria-hidden="true"><img src="images/bust-cutout.webp?v=2" alt=""><i style="--x:47%;--y:36%"></i><i style="--x:60%;--y:44%"></i><i style="--x:43%;--y:56%"></i><b>L* 64.2 · ITA 36°</b></div>
+      <div class="lvs" aria-hidden="true"><span class="lv-photo"><img src="images/crops/d-read.webp" alt="" loading="lazy"><i style="--x:36%;--y:30%"></i><i style="--x:64%;--y:30%"></i><i style="--x:32%;--y:60%"></i></span><div class="lv lv-read"><b>L* 64.2</b><b>ITA 36°</b><b>Warm</b></div></div>
       <div><span>01</span><h3>A detailed reading of your features</h3><p>Skin tone, undertone, contrast and 30+ indicators.</p></div>
     </article>
     <article>
-      <div class="lv lv-season" aria-hidden="true"><i class="wheel"></i><b>Soft<br>Autumn</b></div>
+      <div class="lvs" aria-hidden="true"><span class="lv-photo"><img src="images/crops/d-season.webp?v=2" alt="" loading="lazy"></span><div class="lv lv-season"><i class="wheel"></i><b>Soft<br>Autumn</b></div></div>
       <div><span>02</span><h3>Your color season</h3><p>More than a season name: real recommendations based on your season's features and on how each shade impacts you.</p></div>
     </article>
     <article>
-      <div class="lv lv-palette" aria-hidden="true"><i style="--c:#8A5A3B"></i><i style="--c:#B5603F"></i><i style="--c:#C19A6B"></i><i style="--c:#E6D3B8"></i><i style="--c:#708238"></i><i style="--c:#5E6B4E"></i><i style="--c:#3F5A57"></i><i style="--c:#A4785A"></i><i style="--c:#D9B48F"></i><i style="--c:#7A4E3A"></i><i style="--c:#9C8A5A"></i><i style="--c:#C9A27E"></i></div>
+      <div class="lvs" aria-hidden="true"><span class="lv-photo"><img src="images/crops/d-palette.webp?v=3" alt="" loading="lazy"></span><div class="lv lv-palette"><i style="--c:#7A1F3D"></i><i style="--c:#1F4FB8"></i><i style="--c:#0B6B4E"></i><i style="--c:#1E1E24"></i><i style="--c:#F2F0EC"></i><i style="--c:#5B2A5E"></i><i style="--c:#1C2B4A"></i><i style="--c:#B3122E"></i><i style="--c:#3E4A57"></i><i style="--c:#B9BFC8"></i><i style="--c:#0E5E6F"></i><i style="--c:#C2185B"></i></div></div>
       <div><span>03</span><h3>Your full palette</h3><p>The colors with the most potential, also considering your clothing style, personality and trends if you want them taken into account.</p></div>
     </article>
     <article>
-      <div class="lv lv-makeup" aria-hidden="true"><i class="lip" style="--c:#B86A5A"></i><i class="lip" style="--c:#9E5546"></i><i class="blush" style="--c:#D9907A"></i><i class="blush" style="--c:#C98B6E"></i><b>Lips · Cheeks</b></div>
+      <div class="lvs" aria-hidden="true"><span class="lv-photo"><img src="images/crops/d-makeup.webp" alt="" loading="lazy"></span><div class="lv lv-makeup"><i class="lip" style="--c:#B86A5A"></i><i class="lip" style="--c:#9E5546"></i><i class="blush" style="--c:#D9907A"></i><i class="blush" style="--c:#C98B6E"></i><b>Lips · Cheeks</b></div></div>
       <div><span>04</span><h3>Your ideal makeup</h3><p>The makeup that brings out your features.</p></div>
     </article>
     <article>
-      <div class="lv lv-hair" aria-hidden="true"><div><i style="--c:#2B211B"></i><i style="--c:#4E3726"></i><i style="--c:#6A4A30"></i><i class="on" style="--c:#8A5530"></i><i style="--c:#A9714A"></i><i style="--c:#C49F72"></i><i style="--c:#DABD93"></i></div><b>Level 6 · Copper</b></div>
+      <div class="lvs" aria-hidden="true"><span class="lv-photo"><img src="images/crops/d-hair.webp?v=2" alt="" loading="lazy"></span><div class="lv lv-hair"><div><i style="--c:#2B211B"></i><i style="--c:#4E3726"></i><i style="--c:#6A4A30"></i><i class="on" style="--c:#8A5530"></i><i style="--c:#A9714A"></i><i style="--c:#C49F72"></i><i style="--c:#DABD93"></i></div><b>Level 6 · Copper</b></div></div>
       <div><span>05</span><h3>Your best hair color</h3><p>The dye and highlight shades that flatter you.</p></div>
     </article>
     <article>
-      <div class="lv lv-metal" aria-hidden="true"><i class="gold"></i><i class="rose"></i><i class="silver off"></i><b>Gold · Matte</b></div>
+      <div class="lvs" aria-hidden="true"><span class="lv-photo"><img src="images/crops/d-jewelry.webp?v=4" alt="" loading="lazy"></span><div class="lv lv-metal"><i class="gold"></i><i class="rose"></i><i class="silver off"></i><b>Gold · Matte</b></div></div>
       <div><span>06</span><h3>Jewelry &amp; accessories</h3><p>Recommendations on the shades and textures that suit you.</p></div>
     </article>
   </div>
@@ -497,40 +497,6 @@
 </section>
 
 <!-- =========================================================
-     7b. DANS LA VRAIE VIE (vêtements, cheveux, maquillage, bijoux)
-     ========================================================= -->
-<section class="section real-life">
-  <div class="container center">
-    <p class="eyebrow">In real life</p>
-    <h2>You don't need to just know your season.<br><span class="thin">You need to know what to choose.</span></h2>
-    <p class="lead narrow">Your palette is only the start. We help you find your colors in real things, for every day, without changing your style.</p>
-  </div>
-  <div class="container rl-grid">
-    <article>
-      <div class="rl-vis rl-clothes" aria-hidden="true"><i style="--c:#708238"></i><i style="--c:#C19A6B"></i><i style="--c:#8A5A3B"></i><i style="--c:#E6D3B8"></i></div>
-      <h3>Clothes</h3>
-      <p>Which shades, what to buy, how to judge when you're shopping.</p>
-    </article>
-    <article>
-      <div class="rl-vis rl-hair" aria-hidden="true"><i style="--c:#5A3A24"></i><i style="--c:#8A5530"></i><i style="--c:#A9714A"></i></div>
-      <h3>Hair</h3>
-      <p>The words to tell your hairdresser: level, reflect, and which highlights to avoid.</p>
-    </article>
-    <article>
-      <div class="rl-vis rl-makeup" aria-hidden="true"><i style="--c:#E0B79A"></i><i style="--c:#B86A5A"></i><i style="--c:#D9907A"></i><i style="--c:#6B4A3A"></i></div>
-      <h3>Makeup</h3>
-      <p>Foundation undertone, blush, lipstick and eyeliner shades you can find in stores.</p>
-    </article>
-    <article>
-      <div class="rl-vis rl-metal" aria-hidden="true"><i class="gold"></i><i class="rose"></i></div>
-      <h3>Jewelry</h3>
-      <p>Gold, silver or rose gold, shiny or matte, and the stones that echo your eyes.</p>
-    </article>
-  </div>
-  <p class="rl-note container center"><b>Your style stays yours.</b> Classic, minimal, trendy, bold… we adapt to the way you like to dress.</p>
-</section>
-
-<!-- =========================================================
      8. REAL RESULTS (curseurs avant / après)
      ========================================================= -->
 <section class="section">
@@ -562,6 +528,40 @@
 </section>
 
 <!-- =========================================================
+     7b. DANS LA VRAIE VIE (vêtements, cheveux, maquillage, bijoux)
+     ========================================================= -->
+<section class="section real-life">
+  <div class="container center">
+    <p class="eyebrow">In real life</p>
+    <h2>You don't need to just know your season.<br><span class="thin">You need to know what to choose.</span></h2>
+    <p class="lead narrow">Your palette is only the start. We help you find your colors in real things, for every day, without changing your style.</p>
+  </div>
+  <div class="container rl-grid">
+    <article>
+      <div class="rls" aria-hidden="true"><img src="images/crops/r-clothes.webp?v=4" alt="" loading="lazy"><div class="rl-vis rl-clothes"><i style="--c:#1F5E6E"></i><i style="--c:#A65A3A"></i><i style="--c:#6E6B3A"></i><i style="--c:#B48A5A"></i></div></div>
+      <h3>Clothes</h3>
+      <p>Which shades, what to buy, how to judge when you're shopping.</p>
+    </article>
+    <article>
+      <div class="rls" aria-hidden="true"><img src="images/crops/r-hair.webp?v=4" alt="" loading="lazy"><div class="rl-vis rl-hair"><i style="--c:#6B4A35"></i><i style="--c:#A0552C"></i><i style="--c:#C7743E"></i></div></div>
+      <h3>Hair</h3>
+      <p>The words to tell your hairdresser: level, reflect, and which highlights to avoid.</p>
+    </article>
+    <article>
+      <div class="rls" aria-hidden="true"><img src="images/crops/r-makeup.webp?v=4" alt="" loading="lazy"><div class="rl-vis rl-makeup"><i style="--c:#BA5162"></i><i style="--c:#DB9A8D"></i><i style="--c:#866564"></i><i style="--c:#443333"></i></div></div>
+      <h3>Makeup</h3>
+      <p>Foundation undertone, blush, lipstick and eyeliner shades you can find in stores.</p>
+    </article>
+    <article>
+      <div class="rls" aria-hidden="true"><img src="images/crops/r-jewelry.webp?v=4" alt="" loading="lazy"><div class="rl-vis rl-metal"><i style="background:linear-gradient(135deg,#F4F4F4,#9C9DA1)"></i><i style="background:linear-gradient(135deg,#EFEEE9,#B9B6AC)"></i><i style="background:linear-gradient(135deg,#8C8D92,#3C3D42)"></i></div></div>
+      <h3>Jewelry</h3>
+      <p>Gold, silver or rose gold, shiny or matte, and the stones that echo your eyes.</p>
+    </article>
+  </div>
+  <p class="rl-note container center"><b>Your style stays yours.</b> Classic, minimal, trendy, bold… we adapt to the way you like to dress.</p>
+</section>
+
+<!-- =========================================================
      8b. VERBATIMS CLIENTS
      ========================================================= -->
 <section class="section voices">
@@ -575,6 +575,15 @@
       <blockquote>“I truly don't know what looks good on me or what undertone I am.”</blockquote>
       <blockquote>“I bought and subsequently got rid of a lot of clothes, but didn't know why I didn't like them.”</blockquote>
       <blockquote>“Everyone I talk to has a different opinion as to which looks better on me.”</blockquote>
+      <figure class="voices-ba">
+        <div class="ba-slider" style="--pos:50%">
+          <img src="images/result4-after.jpg" alt="After: black hair, emerald green top, gold earrings" loading="lazy">
+          <img src="images/result4-before.jpg" class="ba-before" alt="Before: copper braids, peach top, small gold hoops" loading="lazy">
+          <span class="tag tag-l">BEFORE</span><span class="tag tag-r">AFTER</span>
+          <div class="ba-handle" aria-hidden="true"></div>
+          <input type="range" min="0" max="100" value="50" aria-label="Compare before and after">
+        </div>
+      </figure>
     </div>
     <div class="voices-col after">
       <p class="voices-tag">After NUANCE</p>
@@ -645,7 +654,7 @@
       <p>See how the right colors look on your own face, before you change anything.</p>
     </article>
     <article class="viz2-card">
-      <div class="viz2-thumb"><img src="images/colors-after.jpg" alt=""><img src="images/result3-after.jpg" alt=""><img src="images/result2-after.jpg" alt=""></div>
+      <div class="viz2-thumb viz2-still"><img src="images/crops/viz-unique.webp" alt="" loading="lazy"></div>
       <h3>Uniqueness-aware</h3>
       <p>Your features, your personality, your style. Never a generic chart.</p>
     </article>
@@ -658,7 +667,7 @@
       </div>
     </div>
     <article class="viz2-card">
-      <div class="viz2-thumb viz2-ui"><span></span><span></span><span class="on"></span></div>
+      <div class="viz2-thumb viz2-still"><img src="images/crops/viz-still.webp" alt="" loading="lazy"></div>
       <h3>Still 100% you</h3>
       <p>No costume, no disguise. Simple, achievable changes that keep you true to yourself.</p>
     </article>
@@ -683,10 +692,13 @@
       <div><span>04</span><h3>6 in 10</h3><p>clients who had taken a free online test discover their season was wrong.*</p></div>
     </div>
   </div>
-  <blockquote class="quote container">
-    “I don't buy anything without checking my swatches now. I finally love how I look in photos.”
-    <cite>— Laura, client</cite>
-  </blockquote>
+  <figure class="quote-card container">
+    <img src="images/quote-laura.jpg" alt="Laura in a soft blue top, one of her best colors" loading="lazy">
+    <blockquote class="quote">
+      “I don't buy anything without checking my swatches now. I finally love how I look in photos.”
+      <cite>— Laura, client</cite>
+    </blockquote>
+  </figure>
 </section>
 
 <!-- =========================================================

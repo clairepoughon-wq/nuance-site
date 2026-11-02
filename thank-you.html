@@ -71,13 +71,15 @@
 
   <script>
     // Meta : achat confirmé (une seule fois par paiement, même si la page est rechargée)
-    const session = new URLSearchParams(location.search).get('session_id') || 'no-session';
+    const q = new URLSearchParams(location.search);
+    const session = q.get('payment_intent') || q.get('session_id') || 'no-session';
+    const value = Number(q.get('amount')) || 49;
     try {
       if (window.fbq && localStorage.getItem('nuance_purchase') !== session) {
-        fbq('track', 'Purchase', { value: 49, currency: 'EUR' }, { eventID: session });
+        fbq('track', 'Purchase', { value, currency: 'EUR' }, { eventID: session });
         localStorage.setItem('nuance_purchase', session);
       }
-    } catch (_) { if (window.fbq) fbq('track', 'Purchase', { value: 49, currency: 'EUR' }); }
+    } catch (_) { if (window.fbq) fbq('track', 'Purchase', { value, currency: 'EUR' }); }
   </script>
 </body>
 </html>

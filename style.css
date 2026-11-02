@@ -1590,7 +1590,7 @@ main > section.a2:not(#_):not(#_) { background: var(--hero-dye) !important; }
 .a2-stage { --H: clamp(420px, calc(100svh - 96 * var(--u) - 190px), 760px); position: relative; height: var(--H); margin-top: auto; }
 .a2-bust { position: absolute; z-index: 3; bottom: 0; left: 50%; height: 100%; width: auto; max-width: none; transform: translateX(-50%);
   filter: drop-shadow(0 20px 40px rgba(60,48,36,.18)); }
-.a2 .shade-marquee { position: absolute; z-index: 1; left: 0; right: 0; top: 5%; margin: 0; opacity: .85; }
+.a2 .shade-marquee { position: absolute; z-index: 4; left: 0; right: 0; top: 5%; margin: 0; opacity: .85; }
 .a2 .shade-track i { width: 46px; height: 46px; border-radius: 10px; box-shadow: none; }
 .a2-panels { position: absolute; z-index: 2; inset: 24% max(0px, calc(50% - var(--H) * .44 - 410px)) 7%; display: flex; justify-content: space-between; opacity: .78; pointer-events: none; }
 .a2 .analysis-col { width: min(560px, calc(50% - var(--H) * .44 + 150px)); display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-content: center; }
@@ -1976,7 +1976,7 @@ main > section.a2 .card { background: rgba(255,255,255,.13) !important; border: 
 /* ---------- V11 · Hero desktop : vidéo plein cadre ---------- */
 .hero-video { display: none; }
 @media (min-width: 901px) {
-  .hero-video { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 0%; z-index: 0; pointer-events: none; }
+  .hero-video { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 0% 0%; z-index: 0; pointer-events: none; }
   .hero .hero-model { display: none; }
   .hero-content, .hero-pillars { position: relative; z-index: 1; }
 }
@@ -1996,4 +1996,98 @@ main > section.a2 .card { background: rgba(255,255,255,.13) !important; border: 
   .press { justify-content: center; gap: 64px; }
   .press-track { flex: 0 1 auto; -webkit-mask-image: none; mask-image: none; }
   .press-logos { flex: 0 0 auto; justify-content: center; gap: 72px; padding-right: 0; }
+}
+
+/* ---------- V14 · Illustrations photo : Taking into account, You will discover, In real life ---------- */
+/* Taking into account : vignette photo à gauche de chaque ligne */
+.feature-list > div { display: grid; grid-template-columns: 76px 1fr; gap: 18px; align-items: center; }
+.ta-img { width: 76px; height: 76px; border-radius: 12px; object-fit: cover; display: block; box-shadow: var(--relief-sm); }
+.ta-taste { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; overflow: hidden; background: #fff; }
+.ta-taste img { width: 100%; height: 100%; object-fit: cover; }
+.ta-mood { position: relative; overflow: hidden; }
+.ta-mood img { width: 100%; height: 100%; object-fit: cover; }
+.ta-mood b { position: absolute; left: 4px; font: 500 8px/1 "Inter", sans-serif; color: var(--ink); background: rgba(255,255,255,.88); padding: 3px 5px; border-radius: 999px; }
+.ta-mood b:nth-of-type(1) { top: 6px; } .ta-mood b:nth-of-type(2) { top: 31px; left: 22px; } .ta-mood b:nth-of-type(3) { bottom: 6px; }
+
+/* You will discover : moitié photo, moitié illustration */
+.learn article { grid-template-columns: 200px 1fr; }
+.lvs { display: grid; grid-template-columns: 1fr 1fr; height: 100px; border-radius: 10px; overflow: hidden; }
+.lvs .lv { height: 100%; border-radius: 0; }
+.lv-photo { position: relative; display: block; overflow: hidden; }
+.lv-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lv-photo i { position: absolute; left: var(--x); top: var(--y); width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,.3); }
+.lvs .lv-read { flex-direction: column; gap: 6px; }
+.lvs .lv-read b { position: static; padding: 3px 7px; border-radius: 4px; background: rgba(46,41,36,.35); font-size: 9px; }
+.lvs .lv-season { padding-left: 10px; gap: 8px; } .lvs .lv-season .wheel { width: 40px; height: 40px; } .lvs .lv-season b { font-size: 10.5px; }
+.lvs .lv-palette { grid-template-columns: repeat(4, 1fr); padding: 10px; gap: 4px; }
+.lvs .lv-palette i:nth-child(n+13) { display: none; }
+.lvs .lv-hair i { width: 9px; height: 26px; } .lvs .lv-hair div { gap: 2px; }
+.lvs .lv-makeup .lip { width: 10px; height: 30px; } .lvs .lv-makeup .blush { width: 20px; height: 20px; } .lvs .lv-makeup { gap: 6px; }
+.lvs .lv-metal i { width: 22px; height: 22px; } .lvs .lv-metal { gap: 7px; }
+
+/* In real life : moitié photo, moitié illustration */
+.rls { display: grid; grid-template-columns: 1fr 1fr; height: 130px; border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
+.rls > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rls .rl-vis { height: 100%; border-radius: 0; margin: 0; }
+.rls .rl-clothes i { width: 18px; height: 40px; } .rls .rl-clothes { gap: 5px; }
+.rls .rl-hair i { width: 16px; height: 60px; } .rls .rl-hair { gap: 5px; }
+.rls .rl-makeup { display: grid; grid-template-columns: repeat(2, 26px); gap: 8px; align-content: center; justify-content: center; } .rls .rl-makeup i { width: 26px; height: 26px; }
+.rls .rl-metal i { width: 28px; height: 28px; } .rls .rl-metal { flex-direction: column; gap: 6px; }
+
+@media (max-width: 900px) {
+  .feature-list > div { grid-template-columns: 60px 1fr; gap: 14px; }
+  .ta-img { width: 60px; height: 60px; border-radius: 10px; }
+  .ta-mood b { font-size: 7px; padding: 2px 4px; } .ta-mood b:nth-of-type(2) { top: 24px; left: 16px; }
+  .learn article { grid-template-columns: 128px 1fr; }
+  .lvs { height: 80px; }
+  .lvs .lv-read b { display: block; font-size: 7px; padding: 2px 4px; } .lvs .lv-read { gap: 4px; }
+  .lvs .lv-season { justify-content: center; padding-left: 0; } .lvs .lv-season b { display: none; }
+  .lvs .lv-season { padding-left: 6px; gap: 4px; } .lvs .lv-season .wheel { width: 28px; height: 28px; } .lvs .lv-season b { font-size: 8.5px; }
+  .lvs .lv-palette { padding: 6px; gap: 3px; }
+  .lvs .lv-hair i { width: 6px; height: 20px; } .lvs .lv-hair b { font-size: 6px; }
+  .lvs .lv-makeup .lip { width: 7px; height: 22px; } .lvs .lv-makeup .blush { width: 14px; height: 14px; } .lvs .lv-makeup { gap: 4px; } .lvs .lv-makeup b { font-size: 6px; left: 4px; top: 4px; }
+  .lvs .lv-metal i { width: 16px; height: 16px; } .lvs .lv-metal { gap: 4px; } .lvs .lv-metal b { font-size: 6px; }
+  .rls { height: 96px; margin-bottom: 10px; }
+  .rls .rl-clothes i { width: 10px; height: 26px; } .rls .rl-clothes { gap: 3px; }
+  .rls .rl-hair i { width: 10px; height: 44px; } .rls .rl-hair { gap: 3px; }
+  .rls .rl-makeup { grid-template-columns: repeat(2, 18px); gap: 5px; } .rls .rl-makeup i { width: 18px; height: 18px; }
+  .rls .rl-metal i { width: 20px; height: 20px; } .rls .rl-metal { gap: 4px; }
+}
+
+/* ---------- V15 · Illustrations expertes, Still 100% you, avant / après dans les avis ---------- */
+.feature-list > div { grid-template-columns: 168px 1fr; gap: 22px; }
+.ta-img { width: 168px; height: 112px; border-radius: 12px; }
+.viz2-still { padding: 0; overflow: hidden; }
+.viz2-still img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+/* l'avant / après remplit le vide sous la colonne « Before », sans allonger la section */
+@media (min-width: 901px) {
+  .voices-col:not(.after) { display: flex; flex-direction: column; gap: 10px; }
+  .voices-ba { flex: 1; min-height: 190px; display: flex; }
+  .voices-ba .ba-slider { flex: 1; height: auto; width: 100%; aspect-ratio: auto; border-radius: 14px; overflow: hidden; }
+  .voices-ba .ba-slider img { object-position: center 48%; }
+}
+@media (max-width: 900px) {
+  .feature-list > div { grid-template-columns: 108px 1fr; gap: 14px; }
+  .ta-img { width: 108px; height: 72px; border-radius: 10px; }
+  .voices-ba { display: none; }
+}
+
+/* ---------- V16 · Section 5,000+ : citation illustrée, version mobile compacte ---------- */
+.quote-card { display: grid; grid-template-columns: 220px 1fr; gap: 36px; align-items: center; max-width: 900px; margin-top: 56px; }
+.quote-card img { width: 220px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); box-shadow: var(--relief-sm); }
+.quote-card .quote { margin: 0; text-align: left; max-width: none; }
+@media (max-width: 900px) {
+  .trust { gap: 8px; }
+  .trust-big { min-height: 0; padding: 20px 22px; flex-direction: row; align-items: center; gap: 16px; }
+  .trust-big .big { font-size: 2.6rem; line-height: 1; }
+  .trust-big p { margin: 0; font-size: 13px; }
+  .trust-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .trust-grid > div { padding: 14px; }
+  .trust-grid span { display: none; }
+  .trust-grid h3 { margin: 0 0 4px; font-size: 14px; }
+  .trust-grid p { font-size: 12px !important; line-height: 1.4; }
+  .quote-card { grid-template-columns: 96px 1fr; gap: 16px; margin-top: 24px; }
+  .quote-card img { width: 96px; border-radius: 12px; }
+  .quote-card .quote { font-size: 1.02rem; line-height: 1.4; }
+  .quote-card .quote cite { margin-top: .5rem; font-size: .8rem; }
 }
