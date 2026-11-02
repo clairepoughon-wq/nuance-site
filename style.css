@@ -2097,7 +2097,7 @@ main > section.a2 .card { background: rgba(255,255,255,.13) !important; border: 
   /* rythme général */
   main > section.section:not(.final-cta) { padding-top: 44px !important; padding-bottom: 44px !important; min-height: 0 !important; }
   main > section.final-cta { padding-top: 64px !important; padding-bottom: 64px !important; }
-  main > section.report-section { padding-bottom: 0 !important; }
+  main > section.section.report-section:not(.final-cta) { padding-bottom: 0 !important; }
   .eyebrow { font-size: 9.5px !important; padding: 4px 10px !important; margin-bottom: 10px !important; letter-spacing: .12em; }
   h2 { margin-bottom: .7rem; }
   .lead { font-size: 14.5px; line-height: 1.5; }
@@ -2149,8 +2149,10 @@ main > section.a2 .card { background: rgba(255,255,255,.13) !important; border: 
 
   /* Get your personalized report : texte resserré, bas de l'aperçu coupé */
   .report-layout { gap: 18px; }
-  .report-points li { padding: 6px 0; font-size: 13.5px; }
-  .report-doc { max-height: 380px; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent); mask-image: linear-gradient(to bottom, #000 78%, transparent); }
+  .report-points { margin-top: 16px !important; padding-top: 12px !important; gap: 6px !important; }
+  .report-points li { padding: 0; gap: 14px; font-size: 13.5px; line-height: 1.35; }
+  .report-points span { padding-top: 1px; font-size: 10px; }
+  .report-doc { max-height: 290px; overflow: hidden; -webkit-mask-image: none; mask-image: none; }
 
   /* 30+ criteria et FAQ : accordéons compacts */
   .accordions summary { padding: 13px 0; font-size: 15px; }
@@ -2161,4 +2163,41 @@ main > section.a2 .card { background: rgba(255,255,255,.13) !important; border: 
   .criteria details dd { margin-top: -8px; font-size: 12px !important; }
   .faq details p { padding-bottom: 14px; font-size: 13px !important; line-height: 1.45; }
   .faq summary { font-size: 14.5px; }
+}
+
+/* ---------- V18 · Visages avant / après dans « A new way to glow up », retouches mobile ---------- */
+.way-face { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; display: block; box-shadow: 0 0 0 2px rgba(255,255,255,.7), 0 2px 6px rgba(0,0,0,.15); }
+.way-old .way-face { filter: saturate(.85); }
+@media (max-width: 900px) {
+  /* le fond s'arrête au bas du buste */
+  main > section.section.a2:not(.final-cta) { padding-bottom: 0 !important; }
+  /* You will discover : un peu plus aéré */
+  .learn { gap: 10px; }
+  .learn article { grid-template-columns: 112px 1fr; gap: 12px; padding: 10px; }
+  .lvs { height: 72px; }
+  .learn p { margin-top: 3px; }
+  .discover .learn { margin-top: -6px; }
+}
+
+/* aperçu : photo en hero mobile, coupée seulement par le haut */
+@media (max-width: 900px) { .hero.hero-photo .hero-video { object-position: 50% 100%; } }
+/* aperçu photo : voile beaucoup plus léger pour laisser voir le pull, texte lisible grâce à une ombre */
+@media (max-width: 900px) {
+  .hero.hero-photo::before { background: linear-gradient(to top, rgba(38,30,24,.62) 0%, rgba(38,30,24,.38) 30%, rgba(38,30,24,0) 52%) !important; }
+  .hero.hero-photo .hero-content h1, .hero.hero-photo .hero-content p { text-shadow: 0 1px 12px rgba(30,20,14,.45); }
+}
+
+/* ---------- V19 · Photos avant / après « épinglées » dans le coin des cartes ---------- */
+.way { position: relative; }
+.way-head .way-face { position: absolute; top: -14px; right: 18px; width: 64px; height: 85px; border-radius: 3px; object-fit: cover;
+  border: 3px solid #fff; box-shadow: 0 6px 16px rgba(40,28,18,.22); transform: rotate(4deg); z-index: 2; }
+.way-new .way-head .way-face { transform: rotate(-3deg); }
+.way-old .way-head .way-face { filter: none; }
+@media (min-width: 901px) {
+  .way-head { gap: 14px; }
+  .way-head .way-face { position: static; width: 60px; height: 80px; margin: -40px 0 0 4px; }
+}
+@media (max-width: 900px) {
+  .way-head { padding-right: 76px !important; min-height: 44px; }
+  .discover .learn { margin-top: 4px; }
 }
