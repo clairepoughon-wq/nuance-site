@@ -1983,9 +1983,17 @@ main > section.a2 .card { background: rgba(255,255,255,.13) !important; border: 
 
 /* ---------- V12 · Hero mobile : vidéo plein écran, texte en bas sur le voile sombre ---------- */
 @media (max-width: 900px) {
-  .hero.has-video { min-height: 100svh; padding-top: 0; justify-content: flex-end; }
+  /* le bandeau « As seen in » (47 px) reste visible en bas du premier écran */
+  .hero.has-video { min-height: calc(100svh - 47px); padding-top: 0; justify-content: flex-end; }
   .hero.has-video .hero-video { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; z-index: 0; pointer-events: none; }
   .hero.has-video .hero-model { display: none; }
   /* réassurance masquée sur mobile : plus de place pour la vidéo */
   .hero .hero-pillars { display: none; }
+}
+
+/* ---------- V13 · As seen in desktop : label + logos groupés et centrés ---------- */
+@media (min-width: 901px) {
+  .press { justify-content: center; gap: 64px; }
+  .press-track { flex: 0 1 auto; -webkit-mask-image: none; mask-image: none; }
+  .press-logos { flex: 0 0 auto; justify-content: center; gap: 72px; padding-right: 0; }
 }
