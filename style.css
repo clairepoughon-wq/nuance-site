@@ -1986,4 +1986,6 @@ main > section.a2 .card { background: rgba(255,255,255,.13) !important; border: 
   .hero.has-video { min-height: 100svh; padding-top: 0; justify-content: flex-end; }
   .hero.has-video .hero-video { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; z-index: 0; pointer-events: none; }
   .hero.has-video .hero-model { display: none; }
+  /* réassurance masquée sur mobile : plus de place pour la vidéo */
+  .hero .hero-pillars { display: none; }
 }
