@@ -142,7 +142,7 @@
       // Meta : la personne a laissé ses coordonnées, puis part au paiement
       if (window.fbq) { fbq('track', 'Lead'); fbq('track', 'InitiateCheckout', { value: 49, currency: 'EUR' }); }
       // Stripe pré-remplit l'email au paiement (0,2 s pour laisser partir les événements Meta)
-      setTimeout(() => { window.location.href = STRIPE_LINK + '?prefilled_email=' + encodeURIComponent(data.email); }, 200);
+      setTimeout(() => { window.location.href = STRIPE_LINK + '?locale=en&prefilled_email=' + encodeURIComponent(data.email); }, 200);
     });
   </script>
 </body>
