@@ -2201,3 +2201,10 @@ main > section.a2 .card { background: rgba(255,255,255,.13) !important; border: 
   .way-head { padding-right: 76px !important; min-height: 44px; }
   .discover .learn { margin-top: 4px; }
 }
+
+/* ---------- V20 · Hero mobile : voile sombre atténué, image jusqu'en bas du premier écran ---------- */
+@media (max-width: 900px) {
+  .hero.has-video { min-height: 100svh; }
+  .hero.has-video::before { background: linear-gradient(to top, rgba(38,30,24,.66) 0%, rgba(38,30,24,.46) 28%, rgba(38,30,24,.16) 46%, rgba(38,30,24,0) 60%); }
+  .hero.has-video .hero-content h1, .hero.has-video .hero-content p { text-shadow: 0 1px 14px rgba(30,20,14,.55), 0 0 2px rgba(30,20,14,.35); }
+}
