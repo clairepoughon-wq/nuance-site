@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Bodoni+Moda:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=47">
+  <link rel="stylesheet" href="style.css?v=55">
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -35,6 +35,9 @@
   <script defer src="/_vercel/insights/script.js"></script>
   <!-- Microsoft Clarity -->
   <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","z7qfphpnlb");</script>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 <body>
 
@@ -417,60 +420,81 @@
     <!-- Aperçu façon visionneuse PDF : miniatures floutées à gauche, page 4 ouverte -->
     <div class="report-doc" aria-hidden="true">
       <div class="doc-side">
-        <div class="doc-thumb"><div class="tc"><em class="t-cover"></em><b></b><i></i><i class="short"></i></div><small>1</small></div>
-        <div class="doc-thumb"><div class="tc"><b></b><i></i><i></i><i class="short"></i><i></i><i class="short"></i></div><small>2</small></div>
-        <div class="doc-thumb"><div class="tc"><b></b><span class="t-photos"><u></u><u></u></span><i></i><i class="short"></i></div><small>3</small></div>
-        <div class="doc-thumb on"><div class="tc"><b></b><i></i><i class="short"></i><span class="t-axes"><i></i><i></i><i></i></span><em class="t-eye"></em><i></i></div><small>4</small></div>
-        <div class="doc-thumb"><div class="tc"><b></b><em class="t-pal"></em><i></i><i class="short"></i></div><small>5</small></div>
-        <div class="doc-thumb"><div class="tc"><b></b><i></i><i></i><i class="short"></i><em class="t-pal t-pal2"></em></div><small>6</small></div>
+        <div class="doc-thumb on img"><img src="images/report/thumb-analysis.jpg?v=2" alt=""><small>1</small></div>
+        <div class="doc-thumb img"><img src="images/report/thumb-skin.jpg?v=1" alt=""><small>2</small></div>
+        <div class="doc-thumb img"><img src="images/report/thumb-eyes.jpg?v=1" alt=""><small>3</small></div>
+        <div class="doc-thumb img"><img src="images/report/thumb-palette.jpg?v=1" alt=""><small>4</small></div>
+        <div class="doc-thumb img"><img src="images/report/thumb-ba.jpg?v=1" alt=""><small>5</small></div>
       </div>
       <div class="doc-view">
-        <div class="doc-page">
-          <div class="doc-head"><span class="logo">NUANCE</span><span>Laura · Color profile</span><span>04 / 18</span></div>
-          <h3 class="doc-title">Your coloring, <span class="thin">measured</span></h3>
-          <div class="doc-cols">
+        <div class="doc-page v2 v3">
+          <div class="doc-head"><span class="logo">NUANCE</span><span>Color analysis</span><span>01 / 18</span></div>
+          <h3 class="doc-title">Sarah’s <span class="thin">analysis</span></h3>
+          <div class="v2-ba-row v3-ba">
+            <figure><img src="images/report/before-full.jpg?v=1" alt=""><span>Before</span></figure>
+            <figure class="after"><img src="images/report/after-full.jpg?v=1" alt=""><span>After</span></figure>
+          </div>
+          <div class="v3-feat"><h4 class="v3-h">Your features</h4></div>
+          <div class="v2-skin v3-skin">
+            <figure class="v2-zones"><img src="images/report/zones.jpg?v=1" alt=""></figure>
             <div>
-              <h4><em>01</em> Measured coloring</h4>
-              <dl class="doc-measures">
-                <dt>Skin</dt><dd>L* 66.4 · a* 12.1 · b* 18.9</dd>
-                <dt>ITA°</dt><dd>41° · Light</dd>
-                <dt>Undertone</dt><dd>Warm-neutral · h 57°</dd>
-                <dt>Hair</dt><dd>Level 5 · golden brown</dd>
-                <dt>Contrast</dt><dd>Medium · ΔL* 34</dd>
-              </dl>
+              <h4><em>01</em> Skin</h4>
+              <div class="v2-cards">
+                <div><small>Skin tone · L*a*b*</small><b>67.8 · 24.4 · 20.7</b><u style="--c:#DA9381"></u></div>
+                <div><small>ITA° · category</small><b>41° · Light</b><em>Light 41–55°</em></div>
+                <div><small>Hue angle · face</small><b>h 38°</b><em>rosy-neutral</em></div>
+                <div><small>Hue angle · neck</small><b>h 50°</b><em>neutral-warm</em></div>
+              </div>
+            </div>
+          </div>
+          <div class="v2-eyes">
+            <figure class="v2-eye"><img src="images/report/eye.jpg?v=1" alt=""></figure>
+            <div>
+              <h4><em>02</em> Eyes</h4>
+              <div class="v2-sw">
+                <div><i style="--c:#6A4A33"></i><b>Amber center</b><small>L* 32 · h 62°</small></div>
+                <div><i style="--c:#76684A"></i><b>Golden olive</b><small>L* 43 · h 75°</small></div>
+                <div><i style="--c:#5A5040"></i><b>Olive outer ring</b><small>L* 35 · h 72°</small></div>
+                <div><i style="--c:#E6DCD5"></i><b>Whites of the eyes</b><small>L* 88 · b* 4.1</small></div>
+              </div>
+            </div>
+          </div>
+          <div class="v2-eyes v3-hair">
+            <figure class="v3-hairimg"><img src="images/report/hair.jpg?v=1" alt=""></figure>
+            <div>
+              <h4><em>03</em> Natural hair</h4>
+              <div class="v3-lvl"><i style="--c:#2B211B"></i><i style="--c:#4E3726"></i><i style="--c:#6A4A30"></i><i style="--c:#7A5A44"></i><i class="on" style="--c:#8A6A55"></i><i style="--c:#A9876E"></i><i style="--c:#C4A88C"></i><i style="--c:#DAC5AA"></i></div>
+              <div class="v2-sw">
+                <div><i style="--c:#8A6A55"></i><b>Roots</b><small>L* 41 · level 6</small></div>
+                <div><i style="--c:#856657"></i><b>Lengths</b><small>L* 46 · h 53°</small></div>
+              </div>
+            </div>
+          </div>
+          <div class="v3-pot v3-pot2">
+            <div>
+              <h4>Projected potential</h4>
+              <p class="v3-p">Your report is organised around <b>6 key color features</b>:</p>
+              <ul class="v3-list">
+                <li><u style="--c:#8A5A3B"></u><span>Hair</span><em>Golden chestnut</em></li>
+                <li><u style="--c:#8A6A4A"></u><span>Makeup</span><em>Bronze &amp; olive eyes</em></li>
+                <li><u style="--c:#6C6D3D"></u><span>Clothes</span><em>Olive, rust, teal</em></li>
+                <li><u style="--c:#C9A15B"></u><span>Jewelry</span><em>Gold, matte</em></li>
+                <li><u style="--c:#DA9381"></u><span>Skin</span><em>Light, neutral-warm</em></li>
+                <li><u style="--c:#6A4A33"></u><span>Eyes</span><em>Golden olive hazel</em></li>
+              </ul>
             </div>
             <div>
-              <h4><em>02</em> Your 4 dimensions</h4>
+              <h4>Your 4 dimensions</h4>
               <div class="doc-axes">
-                <div><span>Cool</span><i style="--p:70%"></i><span>Warm</span></div>
-                <div><span>Light</span><i style="--p:56%"></i><span>Deep</span></div>
+                <div><span>Cool</span><i style="--p:66%"></i><span>Warm</span></div>
+                <div><span>Light</span><i style="--p:44%"></i><span>Deep</span></div>
                 <div><span>Muted</span><i style="--p:30%"></i><span>Clear</span></div>
-                <div><span>Low</span><i style="--p:45%"></i><span>High</span></div>
+                <div><span>Low</span><i style="--p:42%"></i><span>High</span></div>
               </div>
               <p class="doc-season">Season <b>Soft Autumn</b> <small>2nd: True Autumn</small></p>
             </div>
           </div>
-          <div class="doc-eyes">
-            <h4><em>03</em> Your eyes, in detail</h4>
-            <div class="doc-eyes-row">
-              <i class="iris"></i>
-              <dl class="doc-measures">
-                <dt>Iris base</dt><dd><u style="--c:#8A6A3A"></u>Hazel · L* 38</dd>
-                <dt>Flecks</dt><dd><u style="--c:#B8742F"></u>Amber, around the pupil</dd>
-                <dt>Limbal ring</dt><dd><u style="--c:#3A2A1C"></u>Medium · ΔL* 21</dd>
-                <dt>Sclera</dt><dd><u style="--c:#F1ECE3"></u>Soft white · b* 6.2</dd>
-              </dl>
-            </div>
-            <p class="doc-eyes-tip">To make them stand out: <u style="--c:#6B5A2E"></u><u style="--c:#8C5A3A"></u><u style="--c:#5A3A4A"></u> bronze, olive or plum liner, never pure black.</p>
-          </div>
-          <!-- Suite de la page, floutée -->
-          <div class="doc-more">
-            <h4>How your eyes guide your palette</h4>
-            <p>Your amber flecks echo the warm side of your palette. Shades that repeat them near the face make the iris look lighter and brighter, while cold greys and icy pastels flatten them. Your limbal ring is medium, so soft definition works better than strong contrast.</p>
-            <div class="doc-more-pal"><i style="--c:#708238"></i><i style="--c:#C19A6B"></i><i style="--c:#B5603F"></i><i style="--c:#8A5A3B"></i><i style="--c:#5E6B4E"></i><i style="--c:#D9B48F"></i></div>
-            <p>For everyday makeup, choose brown-bronze mascara and a warm taupe shadow. For evenings, deepen the outer corner with olive or plum.</p>
-          </div>
-          <div class="doc-foot"><span>nuancecoloranalysis.com</span><span>4</span></div>
+          <div class="doc-foot"><span>nuancecoloranalysis.com</span><span>1</span></div>
         </div>
       </div>
     </div>

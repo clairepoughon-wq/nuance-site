@@ -2208,3 +2208,101 @@ main > section.a2 .card { background: rgba(255,255,255,.13) !important; border: 
   .hero.has-video::before { background: linear-gradient(to top, rgba(38,30,24,.66) 0%, rgba(38,30,24,.46) 28%, rgba(38,30,24,.16) 46%, rgba(38,30,24,0) 60%); }
   .hero.has-video .hero-content h1, .hero.has-video .hero-content p { text-shadow: 0 1px 14px rgba(30,20,14,.55), 0 0 2px rgba(30,20,14,.35); }
 }
+
+/* ---------- V21 · Aperçu du rapport : peau mesurée, œil, avant/après, palette ---------- */
+.report-doc .doc-page.v2 { gap: 1.25em; }
+.v2-kicker { display: inline-block; font-family: "IBM Plex Mono", monospace; font-size: .72em; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: .35em .9em; margin-bottom: .8em; }
+.v2-lead { font-size: .92em; line-height: 1.5; color: var(--muted); font-weight: 300; margin-top: .6em; }
+.v2-skin { display: grid; grid-template-columns: 15em 1fr; gap: 1.4em; align-items: start; }
+.v2-zones { margin: 0; border-radius: .9em; overflow: hidden; aspect-ratio: 3 / 4; }
+.v2-zones img, .v2-ba img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.v2-cards { display: grid; grid-template-columns: 1fr 1fr; gap: .7em; }
+.v2-cards div { position: relative; border: 1px solid var(--line); border-radius: .9em; padding: .9em 1em; background: #fff; }
+.v2-cards small { display: block; font-size: .72em; color: var(--muted); }
+.v2-cards b { display: block; font-size: 1.15em; font-weight: 400; margin-top: .35em; letter-spacing: -.01em; }
+.v2-cards em { display: block; font-style: normal; font-family: "IBM Plex Mono", monospace; font-size: .64em; color: var(--muted); margin-top: .5em; }
+.v2-cards u { position: absolute; right: .9em; top: .9em; width: 1.9em; height: 1.9em; border-radius: 50%; background: var(--c); }
+.v2-eyes { display: grid; grid-template-columns: 15em 1fr; gap: 1.4em; align-items: center; border-top: 1px solid var(--line); padding-top: 1.2em; }
+.v2-eye { margin: 0; aspect-ratio: 5 / 3; overflow: hidden;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60' preserveAspectRatio='none'%3E%3Cpath d='M1 31 C 22 -6, 78 -6, 99 29 C 78 64, 22 66, 1 31 Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60' preserveAspectRatio='none'%3E%3Cpath d='M1 31 C 22 -6, 78 -6, 99 29 C 78 64, 22 66, 1 31 Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+.v2-eye img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; display: block; transform: scale(1.12); }
+.v2-sw { display: grid; grid-template-columns: 1fr 1fr; gap: .8em 1em; }
+.v2-sw div { display: grid; grid-template-columns: 2.6em 1fr; column-gap: .8em; align-items: center; }
+.v2-sw i { grid-row: span 2; width: 2.6em; height: 2.6em; border-radius: .6em; background: var(--c); border: 1px solid rgba(0,0,0,.06); }
+.v2-sw b { font-size: .86em; font-weight: 500; }
+.v2-sw small { font-family: "IBM Plex Mono", monospace; font-size: .66em; color: var(--muted); }
+.v2-ba { border-top: 1px solid var(--line); padding-top: 1.2em; }
+.v2-ba-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; }
+.v2-ba figure { position: relative; margin: 0; border-radius: .9em; overflow: hidden; aspect-ratio: 4 / 4.4; }
+.v2-ba img { object-position: center 30%; }
+.v2-ba span { position: absolute; left: .7em; top: .7em; font-family: "IBM Plex Mono", monospace; font-size: .6em; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: rgba(46,41,36,.5); padding: .45em .8em; border-radius: 999px; }
+.v2-ba .after span { background: #fff; color: var(--ink); }
+.v2-pal h4 { font-size: .9em !important; margin: 0 !important; }
+.doc-thumb .t-cover { background-image: url("images/report/after.jpg?v=1"); background-position: center 30%; }
+.doc-thumb .t-photos u { background-image: url("images/report/before.jpg?v=1"); background-position: center 30%; }
+.doc-thumb .t-photos u + u { background-image: url("images/report/after.jpg?v=1"); }
+@media (max-width: 600px) { .v2-skin, .v2-eyes { grid-template-columns: 13em 1fr; gap: 1em; } }
+@media (max-width: 900px) {
+  .report-doc .doc-page.v2 > * { order: 3; }
+  .report-doc .doc-page.v2 > .doc-head { order: 0; }
+  .report-doc .doc-page.v2 > .v2-hd { order: 1; }
+  .report-doc .doc-page.v2 > .v2-ba { order: 2; border-top: 0; padding-top: 0; }
+  .report-doc .doc-page.v2 > .v2-skin { border-top: 1px solid var(--line); padding-top: 1.2em; }
+  .report-doc .doc-page.v2 .v2-lead { display: none; }
+  .report-doc:has(.v2) { max-height: 380px; }
+}
+
+/* ---------- V22 · Aperçu « Sarah's analysis » + miniatures réelles ---------- */
+.doc-thumb.img { padding: 0; background: #fff; }
+.doc-thumb.img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.doc-page.v3 .doc-title { font-size: 2.6em; }
+.v3-ba figure { aspect-ratio: 3 / 4; }
+.v3-ba img { object-position: center top; }
+.v3-pot { display: grid; grid-template-columns: 1.15fr 1fr; gap: 2em; border-top: 1px solid var(--line); padding-top: 1.2em; }
+.report-doc .doc-page .v3-pot h4 { margin-bottom: .6em; }
+.v3-p { font-size: .86em; color: var(--muted); margin-bottom: .8em; }
+.v3-p b { color: var(--ink); font-weight: 500; }
+.v3-list { list-style: none; display: grid; gap: .55em; }
+.v3-list li { display: grid; grid-template-columns: 1.1em 4.6em 1fr; gap: .6em; align-items: center; font-size: .86em; }
+.v3-list u { width: 1.1em; height: 1.1em; border-radius: 50%; background: var(--c); }
+.v3-list em { font-style: normal; color: var(--muted); font-size: .92em; }
+.v3-skin { border-top: 1px solid var(--line); padding-top: 1.2em; }
+.v3-skin .v2-cards { margin-top: .2em; }
+@media (max-width: 900px) {
+  .report-doc .doc-page.v3 > * { order: 0; }
+  .report-doc .doc-page.v3 > .v2-skin { border-top: 1px solid var(--line); }
+}
+.v3-ba { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; }
+.v3-ba figure { position: relative; margin: 0; border-radius: .9em; overflow: hidden; }
+.v3-ba img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.v3-ba span { position: absolute; left: .7em; top: .7em; font-family: "IBM Plex Mono", monospace; font-size: .62em; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: rgba(46,41,36,.5); padding: .45em .8em; border-radius: 999px; }
+.v3-ba .after span { background: #fff; color: var(--ink); }
+/* V23 · ordre : Your features (peau, yeux, cheveux) puis potential */
+.v3-feat { border-top: 1px solid var(--line); padding-top: 1.2em; margin-bottom: -.4em; }
+.report-doc .doc-page .v3-feat .v3-h { font-size: 1.35em; font-weight: 400; margin: 0; }
+.doc-page.v3 .v3-skin { border-top: 0; padding-top: 0; }
+.v3-hairimg { margin: 0; width: 6.5em; aspect-ratio: 1 / 1.6; border-radius: .7em; overflow: hidden; justify-self: center; }
+.v3-hairimg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.v3-lvl { display: flex; gap: .3em; margin-bottom: .9em; }
+.v3-lvl i { width: 1.5em; height: 2.2em; border-radius: .3em; background: var(--c); }
+.v3-lvl i.on { outline: 1.5px solid var(--ink); outline-offset: 2px; }
+.report-doc .doc-page.v3 { gap: 1em; }
+.doc-page.v3 .doc-title { font-size: 2.2em; }
+.doc-page.v3 .v3-ba figure { aspect-ratio: 1 / 1; }
+.doc-page.v3 .v2-skin, .doc-page.v3 .v2-eyes { grid-template-columns: 10.5em 1fr; gap: 1.2em; }
+.doc-page.v3 .v2-zones { aspect-ratio: 1 / 1; }
+.doc-page.v3 .v2-zones img { object-position: center 30%; }
+.doc-page.v3 .v2-cards { gap: .5em; }
+.doc-page.v3 .v2-cards div { padding: .6em .8em; }
+.doc-page.v3 .v2-cards b { font-size: 1em; margin-top: .2em; }
+.doc-page.v3 .v2-cards em { margin-top: .3em; }
+.doc-page.v3 .v2-cards u { width: 1.4em; height: 1.4em; top: .6em; right: .7em; }
+.doc-page.v3 .v2-eyes { padding-top: .9em; }
+.doc-page.v3 .v3-hairimg { width: 5em; aspect-ratio: 1 / 1.3; }
+.doc-page.v3 .v3-lvl { margin-bottom: .6em; }
+.doc-page.v3 .v3-pot { padding-top: .9em; }
+.doc-page.v3 .v3-list { gap: .4em; }
+.doc-page.v3 h4 { margin-bottom: .5em !important; }
+@media (max-width: 900px) { .report-doc .doc-page.v3 > .v2-skin.v3-skin { border-top: 0; padding-top: 0; } }
+.doc-page.v3 .v3-hairimg { justify-self: start; }
