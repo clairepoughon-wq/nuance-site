@@ -2306,3 +2306,17 @@ main > section.a2 .card { background: rgba(255,255,255,.13) !important; border: 
 .doc-page.v3 h4 { margin-bottom: .5em !important; }
 @media (max-width: 900px) { .report-doc .doc-page.v3 > .v2-skin.v3-skin { border-top: 0; padding-top: 0; } }
 .doc-page.v3 .v3-hairimg { justify-self: start; }
+/* V24 · plus de miniatures : la colonne est coupée en bas comme une vraie visionneuse */
+.report-doc .doc-side { overflow: hidden; }
+.report-doc .doc-side { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.report-doc .doc-thumb { flex: none; width: 100%; aspect-ratio: 1 / 1.414; }
+
+/* V25 · 18 miniatures sur deux colonnes en desktop, pour montrer tout le rapport */
+@media (min-width: 961px) {
+  .report-doc { grid-template-columns: 124px 1fr; }
+  .report-doc .doc-side { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 6px; align-content: start; grid-auto-rows: max-content; height: 0; min-height: 100%; }
+  .report-doc .doc-thumb { width: 100%; }
+  .report-doc .doc-page { min-height: 100%; }
+  .report-doc .doc-thumb small { font-size: 6px; right: 3px; bottom: 2px; }
+  .report-doc .doc-thumb.on { outline-width: 1.5px; outline-offset: 1.5px; }
+}
