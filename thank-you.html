@@ -85,7 +85,7 @@
     // Meta : achat confirmé (une seule fois par paiement, même si la page est rechargée)
     const q = new URLSearchParams(location.search);
     const session = q.get('payment_intent') || q.get('session_id') || 'no-session';
-    const value = Number(q.get('amount')) || 49;
+    const value = Number(q.get('amount')) || 27;
     try {
       if (window.fbq && localStorage.getItem('nuance_purchase') !== session) {
         fbq('track', 'Purchase', { value, currency: 'EUR' }, { eventID: session });
