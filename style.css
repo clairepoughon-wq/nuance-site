@@ -2327,3 +2327,7 @@ main > section.a2 .card { background: rgba(255,255,255,.13) !important; border: 
   .radiant .container.center { margin-bottom: 0; }
   .radiant .viz2 { margin-top: 32px; }
 }
+
+/* V27 · contact sous la FAQ */
+.faq-contact { margin-top: 28px; color: var(--muted); font-size: .95rem; overflow-wrap: anywhere; }
+.faq-contact a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
