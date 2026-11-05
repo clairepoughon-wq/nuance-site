@@ -2312,3 +2312,18 @@ main > section.a2 .card { background: rgba(255,255,255,.13) !important; border: 
 .report-doc .doc-thumb { flex: none; width: 100%; aspect-ratio: 1 / 1.414; }
 /* V25 · la page ouverte descend jusqu'en bas, comme la colonne de miniatures */
 @media (min-width: 961px) { .report-doc .doc-page { min-height: 100%; } }
+/* V26 · sections plus compactes en desktop */
+@media (min-width: 961px) {
+  .section-alt.screen { --ta: clamp(56px, calc((100svh - 136px) / 6 - 19px), 86px); padding: 96px 0 40px; }
+  .section-alt.screen .feature-list > div { grid-template-columns: calc(var(--ta) * 1.5) 1fr; padding-top: 9px; padding-bottom: 9px; }
+  .section-alt.screen .ta-img { width: calc(var(--ta) * 1.5); height: var(--ta); }
+  .discover { padding: 92px 0 56px; }
+  .discover .container.center { margin-bottom: 28px; }
+  .discover .learn { max-width: 1120px; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .no-hiding { padding: 80px 0 36px; }
+  .no-hiding .container.center { margin-bottom: 0; }
+  .no-hiding .results-grid { margin-top: 24px; }
+  .radiant { padding: 92px 0 56px; }
+  .radiant .container.center { margin-bottom: 0; }
+  .radiant .viz2 { margin-top: 32px; }
+}
