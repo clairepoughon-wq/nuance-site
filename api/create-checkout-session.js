@@ -12,6 +12,8 @@ const productOf = (price) => ({
   description: price.product.description,
   amount: price.unit_amount,
   currency: price.currency,
+  // Prix fixés par devise dans Stripe, s'il y en a
+  currencies: Object.fromEntries(Object.entries(price.currency_options || {}).map(([code, option]) => [code, option.unit_amount])),
 });
 
 module.exports = async (req, res) => {
@@ -30,8 +32,8 @@ module.exports = async (req, res) => {
   try {
     // Titres, sous-titres et prix viennent de Stripe, pas du site
     const [main, express, session] = await Promise.all([
-      stripe(`prices/${STRIPE_PRICE_ID}?expand[]=product`),
-      stripe(`prices/${STRIPE_EXPRESS_PRICE_ID}?expand[]=product`),
+      stripe(`prices/${STRIPE_PRICE_ID}?expand[]=product&expand[]=currency_options`),
+      stripe(`prices/${STRIPE_EXPRESS_PRICE_ID}?expand[]=product&expand[]=currency_options`),
       stripe('checkout/sessions', new URLSearchParams({
         mode: 'payment',
         ui_mode: 'elements',

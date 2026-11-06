@@ -96,16 +96,16 @@
     }
 
     if (q.get('session_id')) {
-      // Paiement intégré : on lit le vrai montant (27 € ou 36 € avec Express) chez Stripe
+      // Paiement intégré : on lit le vrai montant (47 € ou 66 € avec Express) chez Stripe
       fetch('/api/session-status?session_id=' + encodeURIComponent(q.get('session_id')))
         .then((r) => r.ok ? r.json() : Promise.reject())
         .then((s) => {
           if (s.status === 'open') location.replace('checkout.html');
           else if (s.status === 'complete') trackPurchase(s.amount, s.currency.toUpperCase());
         })
-        .catch(() => trackPurchase(27));
+        .catch(() => trackPurchase(47));
     } else {
-      trackPurchase(Number(q.get('amount')) || 27);
+      trackPurchase(Number(q.get('amount')) || 47);
     }
   </script>
 </body>

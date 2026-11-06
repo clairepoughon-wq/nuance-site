@@ -40,19 +40,28 @@
     #currency-block { display: none; margin-bottom: 20px; }
     #currency-selector { margin-top: 10px; }
     .add:disabled { opacity: .6; cursor: wait; }
-    .loading { color: var(--muted); font-size: .9rem; }
-    #stripe-area { visibility: hidden; }
-    .ready #stripe-area { visibility: visible; }
-    .ready .loading { display: none; }
+    /* Blocs gris le temps que Stripe charge */
+    .skeleton { display: grid; gap: 14px; }
+    .skeleton i { display: block; height: 52px; border-radius: 6px; background: #F1ECE5; animation: pulse 1.2s ease-in-out infinite; }
+    .skeleton i.tall { height: 260px; }
+    @keyframes pulse { 50% { opacity: .55; } }
+    #stripe-area { position: absolute; left: -9999px; width: 100%; max-width: 480px; }
+    .ready #stripe-area { position: static; max-width: none; }
+    .ready .skeleton { display: none; }
+    .summary { min-height: 320px; }
+    .summary > * { visibility: hidden; }
+    .loaded .summary > * { visibility: visible; }
     #express-checkout { margin-bottom: 4px; }
-    .or { display: none; align-items: center; gap: 12px; color: #6B6C7B; font-size: .8rem; margin: 14px 0; }
+    .or { display: none; align-items: center; gap: 12px; color: #6B6C7B; font-size: .8rem; margin: 8px 0; }
     .or::before, .or::after { content: ""; flex: 1; height: 1px; background: #E6E6EB; }
-    #contact-details { margin-bottom: 14px; }
-    .pay-btn { width: 100%; margin-top: 16px; font: inherit; font-weight: 500; color: #fff; background: #241C17; border: 0; border-radius: 6px; padding: 14px; cursor: pointer; }
+    #contact-details { margin-bottom: 10px; }
+    .pay-btn { width: 100%; margin-top: 12px; font: inherit; font-weight: 500; color: #fff; background: #241C17; border: 0; border-radius: 6px; padding: 14px; cursor: pointer; }
     .pay-btn:disabled { opacity: .55; cursor: not-allowed; }
     .error { color: #B3261E; font-size: .85rem; margin-top: 10px; }
     .error:empty { display: none; }
     .legal { margin-top: 10px; font-size: .78rem; color: var(--muted); text-align: center; }
+    /* Sur ordinateur, Pay reste visible même sur un petit écran */
+    @media (min-width: 861px) { .pay-btn { position: sticky; bottom: 12px; box-shadow: 0 0 0 8px #fff; } .pay { padding-top: 12px; padding-bottom: 12px; } }
     @media (max-width: 860px) {
       .bar { padding: 14px 16px; gap: 10px; }
       .logo { font-size: .95rem; }
@@ -63,7 +72,9 @@
       h1 { font-size: 1.5rem; }
       }
   </style>
-  <script src="https://js.stripe.com/endive/stripe.js"></script>
+  <link rel="preconnect" href="https://js.stripe.com">
+  <link rel="preconnect" href="https://api.stripe.com">
+  <script async id="stripe-js" src="https://js.stripe.com/endive/stripe.js" onerror="window.stripeFailed = true"></script>
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -137,7 +148,7 @@
 
     <!-- Paiement : les blocs ci-dessous sont dessinés et sécurisés par Stripe -->
     <section class="pay">
-      <p class="loading">Loading secure payment…</p>
+      <div class="skeleton" aria-label="Loading secure payment"><i></i><i></i><i class="tall"></i><i></i></div>
       <div id="stripe-area">
         <div id="express-checkout"></div>
         <p class="or" id="or">Or</p>
@@ -162,11 +173,22 @@
 
     async function startCheckout() {
       try {
-        const r = await fetch('/api/create-checkout-session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(buyer),
+        // Session et Stripe.js se chargent en même temps pour gagner du temps
+        const stripeLoaded = new Promise((resolve, reject) => {
+          if (window.Stripe) return resolve();
+          if (window.stripeFailed) return reject();
+          $('stripe-js').addEventListener('load', resolve);
+          $('stripe-js').addEventListener('error', reject);
+          setTimeout(reject, 10000);
         });
+        const [r] = await Promise.all([
+          fetch('/api/create-checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(buyer),
+          }),
+          stripeLoaded,
+        ]);
         if (!r.ok) throw new Error('session');
         const { clientSecret, publishableKey, products } = await r.json();
 
@@ -174,7 +196,11 @@
           clientSecret,
           adaptivePricing: { allowed: true },
           defaultValues: { email: buyer.email },
-          elementsOptions: { appearance: { theme: 'stripe', variables: { colorPrimary: '#2E2924', colorText: '#2E2924', borderRadius: '6px' } } },
+          elementsOptions: { appearance: { theme: 'stripe', variables: {
+            colorPrimary: '#2E2924', colorText: '#2E2924', borderRadius: '6px',
+            // Sur ordinateur, formulaire resserré pour garder le bouton Pay dans le premier écran
+            ...(matchMedia('(min-width: 861px)').matches ? { spacingUnit: '2px', fontSizeBase: '14px' } : {}),
+          } } },
         });
         const loaded = await checkout.loadActions();
         if (loaded.type !== 'success') throw new Error('load');
@@ -187,8 +213,17 @@
 
         checkout.createCurrencySelectorElement().mount('#currency-selector');
         checkout.createContactDetailsElement().mount('#contact-details');
-        checkout.createPaymentElement({ layout: 'accordion' }).mount('#payment-element');
-        const expressElement = checkout.createExpressCheckoutElement();
+        // wallets.link : retire le long formulaire d'inscription à Link, le bouton Link reste en haut
+        const paymentElement = checkout.createPaymentElement({ layout: 'accordion', wallets: { link: 'never' } });
+        paymentElement.mount('#payment-element');
+        const showPayment = () => document.body.classList.add('ready');
+        paymentElement.on('ready', showPayment);
+        setTimeout(showPayment, 4000);
+        // Apple Pay et Google Pay s'affichent dès que l'appareil les accepte
+        const expressElement = checkout.createExpressCheckoutElement({
+          paymentMethods: { applePay: 'always', googlePay: 'always' },
+          buttonHeight: 40,
+        });
         expressElement.mount('#express-checkout');
         expressElement.on('availablepaymentmethodschange', ({ paymentMethods }) => {
           $('or').style.display = paymentMethods ? 'flex' : 'none';
@@ -242,16 +277,18 @@
           actions.confirm().then(showError);
         });
 
-        document.body.classList.add('ready');
+        document.body.classList.add('loaded');
       } catch (err) {
         // Le paiement intégré ne se charge pas : la vente passe par le lien Stripe habituel
         location.replace(STRIPE_LINK + '?locale=en&prefilled_email=' + encodeURIComponent(buyer.email));
       }
     }
 
-    // Prix de l'Express avant ajout : converti avec le taux de la devise affichée par Stripe
+    // Prix de l'Express avant ajout : prix fixé dans Stripe pour cette devise, sinon converti avec son taux
     function expressPrice(product, session) {
       const format = (amount, currency) => new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
+      const local = product.currencies[session.currency];
+      if (local !== undefined) return format(local / session.minorUnitsAmountDivisor, session.currency);
       const base = product.amount / 100;
       if (session.currency === product.currency) return format(base, product.currency);
       const option = (session.currencyOptions || []).find((o) => o.currency === session.currency && o.currencyConversion);
