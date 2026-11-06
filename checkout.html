@@ -50,7 +50,8 @@
     #contact-details { margin-bottom: 14px; }
     .pay-btn { width: 100%; margin-top: 16px; font: inherit; font-weight: 500; color: #fff; background: #241C17; border: 0; border-radius: 6px; padding: 14px; cursor: pointer; }
     .pay-btn:disabled { opacity: .55; cursor: not-allowed; }
-    .error { color: #B3261E; font-size: .85rem; margin-top: 10px; min-height: 1em; }
+    .error { color: #B3261E; font-size: .85rem; margin-top: 10px; }
+    .error:empty { display: none; }
     .legal { margin-top: 10px; font-size: .78rem; color: var(--muted); text-align: center; }
     @media (max-width: 860px) {
       .bar { padding: 14px 16px; gap: 10px; }
@@ -127,6 +128,7 @@
           <div class="item"><span id="express-name"></span><span id="express-price"></span></div>
           <p class="desc" id="express-desc"></p>
           <button class="add" type="button" id="add" disabled>+ Add</button>
+          <p class="error" id="express-error" role="alert"></p>
         </div>
 
         <div class="total"><span>Total due</span><span id="total"></span></div>
@@ -216,10 +218,10 @@
           const session = actions.getSession();
           const express = !session.lineItems[1];
           busy = true;
-          $('error').textContent = '';
+          $('express-error').textContent = '';
           render(session);
           try {
-            const result = await checkout.runServerUpdate(async () => {
+            const result = await actions.runServerUpdate(async () => {
               const update = await fetch('/api/update-express', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -229,7 +231,7 @@
             });
             if (result.type === 'error') throw new Error('update');
           } catch (_) {
-            $('error').textContent = 'We could not update your order. Please try again.';
+            $('express-error').textContent = 'We could not update your order. Please try again.';
           }
           busy = false;
           render(actions.getSession());
