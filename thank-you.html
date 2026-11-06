@@ -85,13 +85,28 @@
     // Meta : achat confirmé (une seule fois par paiement, même si la page est rechargée)
     const q = new URLSearchParams(location.search);
     const session = q.get('payment_intent') || q.get('session_id') || 'no-session';
-    const value = Number(q.get('amount')) || 27;
-    try {
-      if (window.fbq && localStorage.getItem('nuance_purchase') !== session) {
-        fbq('track', 'Purchase', { value, currency: 'EUR' }, { eventID: session });
-        localStorage.setItem('nuance_purchase', session);
-      }
-    } catch (_) { if (window.fbq) fbq('track', 'Purchase', { value, currency: 'EUR' }); }
+
+    function trackPurchase(value, currency = 'EUR') {
+      try {
+        if (window.fbq && localStorage.getItem('nuance_purchase') !== session) {
+          fbq('track', 'Purchase', { value, currency }, { eventID: session });
+          localStorage.setItem('nuance_purchase', session);
+        }
+      } catch (_) { if (window.fbq) fbq('track', 'Purchase', { value, currency }); }
+    }
+
+    if (q.get('session_id')) {
+      // Paiement intégré : on lit le vrai montant (27 € ou 36 € avec Express) chez Stripe
+      fetch('/api/session-status?session_id=' + encodeURIComponent(q.get('session_id')))
+        .then((r) => r.ok ? r.json() : Promise.reject())
+        .then((s) => {
+          if (s.status === 'open') location.replace('checkout.html');
+          else if (s.status === 'complete') trackPurchase(s.amount, s.currency.toUpperCase());
+        })
+        .catch(() => trackPurchase(27));
+    } else {
+      trackPurchase(Number(q.get('amount')) || 27);
+    }
   </script>
 </body>
 </html>

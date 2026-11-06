@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NUANCE — Secure checkout</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cream: #FAF8F5; --ink: #2E2924; --muted: #857A70; --line: #E7E0D7; --taupe: #B9A796; --accent: #8F7F6D; }
+    body { font-family: "Inter", system-ui, sans-serif; color: var(--ink); background: var(--cream); -webkit-font-smoothing: antialiased; font-size: 15px; line-height: 1.5; }
+    a { color: inherit; }
+    header { background: #fff; border-bottom: 1px solid var(--line); }
+    .bar { max-width: 1120px; margin: 0 auto; padding: 18px 32px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; }
+    .logo { font-weight: 600; letter-spacing: .2em; font-size: 1.05rem; text-decoration: none; }
+    .secure { display: flex; justify-content: flex-end; align-items: center; gap: 8px; color: var(--muted); font-size: .85rem; white-space: nowrap; }
+    .secure svg { width: 15px; height: 15px; }
+    .layout { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+    .order { padding: 24px 48px 56px 32px; }
+    .pay { background: #fff; min-height: calc(100vh - 62px); padding: 16px 32px 16px 48px; border-left: 1px solid var(--line); }
+    .back { color: var(--muted); font-size: .9rem; text-decoration: none; }
+    h1 { font-size: 1.9rem; font-weight: 500; letter-spacing: -.03em; line-height: 1.15; }
+    h1 span { font-weight: 300; color: var(--muted); }
+    .sub { color: var(--muted); margin-top: 8px; }
+    .gets { list-style: none; display: grid; gap: 6px; margin-top: 14px; }
+    .gets li { position: relative; padding-left: 24px; color: #5E544B; }
+    .gets li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
+    .summary { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .summary h2 { font-size: 1rem; font-weight: 500; }
+    .item { display: flex; justify-content: space-between; gap: 16px; margin-top: 22px; font-weight: 500; }
+    .item span:last-child { white-space: nowrap; }
+    .desc { color: var(--muted); font-size: .88rem; margin-top: 2px; }
+    .upsell { margin-top: 20px; padding: 16px; background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+    .upsell .item { margin-top: 0; }
+    .add { margin-top: 12px; font: inherit; font-size: .88rem; font-weight: 500; color: var(--ink); background: #F1ECE5; border: 0; border-radius: 6px; padding: 7px 12px; cursor: pointer; }
+    .total { display: flex; justify-content: space-between; gap: 16px; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 1.15rem; font-weight: 600; }
+    #currency-block { display: none; margin-bottom: 20px; }
+    #currency-selector { margin-top: 10px; }
+    .add:disabled { opacity: .6; cursor: wait; }
+    .loading { color: var(--muted); font-size: .9rem; }
+    #stripe-area { visibility: hidden; }
+    .ready #stripe-area { visibility: visible; }
+    .ready .loading { display: none; }
+    #express-checkout { margin-bottom: 4px; }
+    .or { display: none; align-items: center; gap: 12px; color: #6B6C7B; font-size: .8rem; margin: 14px 0; }
+    .or::before, .or::after { content: ""; flex: 1; height: 1px; background: #E6E6EB; }
+    #contact-details { margin-bottom: 14px; }
+    .pay-btn { width: 100%; margin-top: 16px; font: inherit; font-weight: 500; color: #fff; background: #241C17; border: 0; border-radius: 6px; padding: 14px; cursor: pointer; }
+    .pay-btn:disabled { opacity: .55; cursor: not-allowed; }
+    .error { color: #B3261E; font-size: .85rem; margin-top: 10px; min-height: 1em; }
+    .legal { margin-top: 10px; font-size: .78rem; color: var(--muted); text-align: center; }
+    @media (max-width: 860px) {
+      .bar { padding: 14px 16px; gap: 10px; }
+      .logo { font-size: .95rem; }
+      .secure { font-size: .75rem; gap: 5px; }
+      .layout { grid-template-columns: minmax(0, 1fr); }
+        .order { padding: 12px 16px 28px; }
+      .pay { min-height: 0; padding: 24px 16px 32px; border-left: 0; border-top: 1px solid var(--line); }
+      h1 { font-size: 1.5rem; }
+      }
+  </style>
+  <script src="https://js.stripe.com/endive/stripe.js"></script>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1257359486587680');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1257359486587680&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <!-- Vercel Web Analytics -->
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- Microsoft Clarity -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","z7qfphpnlb");</script>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <a href="start.html" class="back">‹ Back</a>
+      <a href="index.html" class="logo">NUANCE</a>
+      <span class="secure">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        Secure checkout
+      </span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="order">
+      <!-- 👉 Zone libre : texte et réassurance modifiables -->
+      <h1>Discover<br><span>your true colors</span></h1>
+      <p class="sub">Receive your personalized color analysis and glow-up plan, built around your features and your personality.</p>
+      <ul class="gets">
+        <li>Before-and-after visualization</li>
+        <li>Concrete recommendations for your clothes, hair, makeup and jewelry</li>
+        <li>Glow-up protocol</li>
+        <li>Every result checked by a color expert</li>
+      </ul>
+
+      <!-- Données Stripe : tout ce bloc se remplit depuis la session de paiement -->
+      <div class="summary">
+        <div id="currency-block">
+          <h2>Choose currency</h2>
+          <div id="currency-selector"></div>
+        </div>
+
+        <div class="item"><span id="name"></span><span id="price"></span></div>
+        <p class="desc" id="desc"></p>
+
+        <div class="upsell">
+          <div class="item"><span id="express-name"></span><span id="express-price"></span></div>
+          <p class="desc" id="express-desc"></p>
+          <button class="add" type="button" id="add" disabled>+ Add</button>
+        </div>
+
+        <div class="total"><span>Total due</span><span id="total"></span></div>
+      </div>
+    </section>
+
+    <!-- Paiement : les blocs ci-dessous sont dessinés et sécurisés par Stripe -->
+    <section class="pay">
+      <p class="loading">Loading secure payment…</p>
+      <div id="stripe-area">
+        <div id="express-checkout"></div>
+        <p class="or" id="or">Or</p>
+        <div id="contact-details"></div>
+        <div id="payment-element"></div>
+        <button class="pay-btn" type="button" id="pay" disabled>Pay</button>
+        <p class="error" id="error" role="alert"></p>
+        <p class="legal">Powered by Stripe · By paying, you agree to our <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // 👉 Lien de paiement Stripe : secours si le paiement intégré ne se charge pas
+    const STRIPE_LINK = 'https://buy.stripe.com/6oUdR90dIdoygL435l28801';
+    const $ = (id) => document.getElementById(id);
+
+    let buyer = null;
+    try { buyer = JSON.parse(sessionStorage.getItem('nuance_checkout')); } catch (_) {}
+    if (!buyer || !buyer.email) location.replace('start.html');
+    else startCheckout();
+
+    async function startCheckout() {
+      try {
+        const r = await fetch('/api/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(buyer),
+        });
+        if (!r.ok) throw new Error('session');
+        const { clientSecret, publishableKey, products } = await r.json();
+
+        const checkout = Stripe(publishableKey).initCheckoutElementsSdk({
+          clientSecret,
+          adaptivePricing: { allowed: true },
+          defaultValues: { email: buyer.email },
+          elementsOptions: { appearance: { theme: 'stripe', variables: { colorPrimary: '#2E2924', colorText: '#2E2924', borderRadius: '6px' } } },
+        });
+        const loaded = await checkout.loadActions();
+        if (loaded.type !== 'success') throw new Error('load');
+        const { actions } = loaded;
+
+        $('name').textContent = products.main.name;
+        $('desc').textContent = products.main.description || '';
+        $('express-name').textContent = products.express.name;
+        $('express-desc').textContent = products.express.description || '';
+
+        checkout.createCurrencySelectorElement().mount('#currency-selector');
+        checkout.createContactDetailsElement().mount('#contact-details');
+        checkout.createPaymentElement({ layout: 'accordion' }).mount('#payment-element');
+        const expressElement = checkout.createExpressCheckoutElement();
+        expressElement.mount('#express-checkout');
+        expressElement.on('availablepaymentmethodschange', ({ paymentMethods }) => {
+          $('or').style.display = paymentMethods ? 'flex' : 'none';
+        });
+
+        const showError = (result) => { if (result.type === 'error') $('error').textContent = result.error.message; };
+        expressElement.on('confirm', (event) => {
+          actions.confirm({ expressCheckoutConfirmEvent: event }).then(showError);
+        });
+
+        let busy = false;
+        const render = (session) => {
+          const added = session.lineItems[1];
+          $('price').textContent = session.lineItems[0].unitAmount.amount;
+          $('express-price').textContent = added ? added.unitAmount.amount : expressPrice(products.express, session);
+          $('total').textContent = session.total.total.amount;
+          $('currency-block').style.display = (session.currencyOptions || []).length ? 'block' : 'none';
+          $('add').textContent = added ? 'Remove' : '+ Add';
+          $('add').disabled = busy;
+          $('pay').textContent = 'Pay ' + session.total.total.amount;
+          $('pay').disabled = busy || !session.canConfirm;
+        };
+        render(actions.getSession());
+        checkout.on('change', render);
+
+        $('add').addEventListener('click', async () => {
+          const session = actions.getSession();
+          const express = !session.lineItems[1];
+          busy = true;
+          $('error').textContent = '';
+          render(session);
+          try {
+            const result = await checkout.runServerUpdate(async () => {
+              const update = await fetch('/api/update-express', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ session_id: session.id, express }),
+              });
+              if (!update.ok) throw new Error('update');
+            });
+            if (result.type === 'error') throw new Error('update');
+          } catch (_) {
+            $('error').textContent = 'We could not update your order. Please try again.';
+          }
+          busy = false;
+          render(actions.getSession());
+        });
+
+        $('pay').addEventListener('click', () => {
+          $('error').textContent = '';
+          actions.confirm().then(showError);
+        });
+
+        document.body.classList.add('ready');
+      } catch (err) {
+        // Le paiement intégré ne se charge pas : la vente passe par le lien Stripe habituel
+        location.replace(STRIPE_LINK + '?locale=en&prefilled_email=' + encodeURIComponent(buyer.email));
+      }
+    }
+
+    // Prix de l'Express avant ajout : converti avec le taux de la devise affichée par Stripe
+    function expressPrice(product, session) {
+      const format = (amount, currency) => new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
+      const base = product.amount / 100;
+      if (session.currency === product.currency) return format(base, product.currency);
+      const option = (session.currencyOptions || []).find((o) => o.currency === session.currency && o.currencyConversion);
+      return option
+        ? format(base * Number(option.currencyConversion.fxRate), session.currency)
+        : format(base, product.currency);
+    }
+  </script>
+</body>
+</html>
